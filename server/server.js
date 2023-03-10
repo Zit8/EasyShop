@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const axios = require("axios");
 const morgan = require("morgan");
+const apiProductRouter = require("./routes/adminPanelRoutes/apiProducts");
 require("dotenv").config();
 
 const app = express();
@@ -11,5 +12,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
 app.use(express.static("public"));
+
+app.use("/api/products", apiProductRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

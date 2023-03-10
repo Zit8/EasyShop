@@ -1,17 +1,16 @@
 const express = require("express");
-const { Post } = require("../../db/models");
+const { Product } = require('../../db/models')
 
-const postRouter = express.Router();
+const productRouter = express.Router();
 
-postRouter
+productRouter
   .route("/")
   .get(async (req, res) => {
     try {
-      const allPosts = await Post.findAll({
+      const allProducts = await Product.findAll({
         order: [["createdAt", "DESC"]],
       });
-      console.log();
-      res.json({ data: allPosts, total: allPosts.length });
+      res.json({ data: allProducts, total: allProducts.length });
     } catch (err) {
       console.log(err);
       res.sendStatus(500);
@@ -20,7 +19,7 @@ postRouter
   .post(async (req, res) => {
     console.log(req.body);
     try {
-      const newPost = await Post.create({ ...req.body });
+      const newPost = await Product.create({ ...req.body });
       res.json(newPost);
     } catch (error) {
       console.log(error);
@@ -28,9 +27,9 @@ postRouter
     }
   });
 
-postRouter.route("/:id").delete(async (req, res) => {
+productRouter.route("/:id").delete(async (req, res) => {
   try {
-    await Post.destroy({ where: { id: req.params.id } });
+    await Product.destroy({ where: { id: req.params.id } });
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
@@ -38,4 +37,4 @@ postRouter.route("/:id").delete(async (req, res) => {
   }
 });
 
-module.exports = postRouter;
+module.exports = productRouter;

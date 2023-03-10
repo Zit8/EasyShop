@@ -36,6 +36,7 @@ module.exports = {
       },
       delivered: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       shopId: {
         type: Sequelize.INTEGER,
@@ -59,6 +60,7 @@ module.exports = {
       },
       hidden: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
