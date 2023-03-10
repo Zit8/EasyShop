@@ -22,5 +22,28 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Category",
     }
   );
+
+  Category.updateMany = async function (categories) {
+    categories.forEach(async (category) => {
+      await this.update(
+        { ...(await this.findByPk(category.id)), ...category },
+        { where: { id: category.id } }
+      );
+    });
+    return categories.reduce((acc, category) => {
+      acc.push(category.id);
+      return acc;
+    }, []);
+  };
+
+  Category.deleteMany = async function (categoriesId) {
+    const ids = [];
+    categoriesId.forEach(async (id) => {
+      ids.push(id);
+      await Category.destroy({ where: { id } });
+    });
+    return ids;
+  };
+
   return Category;
 };

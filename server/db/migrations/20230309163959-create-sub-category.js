@@ -22,6 +22,7 @@ module.exports = {
           },
           key: "id",
         },
+        onDelete: "CASCADE",
       },
       userId: {
         type: Sequelize.INTEGER,
