@@ -43,6 +43,7 @@ module.exports = {
       },
       selfDelivery: {
         type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       deliveryDate: {
         type: Sequelize.TEXT,
