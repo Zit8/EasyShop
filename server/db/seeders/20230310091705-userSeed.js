@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 const getUsers = async () => {
   const users = await axios("https://jsonplaceholder.typicode.com/users");
-  console.log(users.data);
   return users.data.reduce((acc, user) => {
     acc.push({
       name: user.name,
