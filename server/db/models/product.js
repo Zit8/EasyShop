@@ -2,11 +2,6 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate({ SubCategory, Shop, User }) {
       Product.belongsTo(SubCategory, { foreignKey: "subcategoryId" });
       Product.belongsTo(Shop, { foreignKey: "shopId" });
@@ -31,5 +26,27 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Product",
     }
   );
+  Product.updateMany = async function (products) {
+    products.forEach(async (product) => {
+      await this.update(
+        { ...(await this.findByPk(product.id)), ...product },
+        { where: { id: product.id } }
+      );
+    });
+    return products.reduce((acc, product) => {
+      acc.push(product.id);
+      return acc;
+    }, []);
+  };
+
+  Product.deleteMany = async function (productsId) {
+    const ids = [];
+    productsId.forEach(async (id) => {
+      ids.push(id);
+      await Product.destroy({ where: { id } });
+    });
+    return ids;
+  };
+
   return Product;
 };
