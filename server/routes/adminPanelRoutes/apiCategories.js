@@ -1,17 +1,17 @@
 const express = require("express");
-const { Product } = require("../../db/models");
+const { Category } = require("../../db/models");
 
-const productRouter = express.Router();
+const categoryRouter = express.Router();
 
-productRouter
+categoryRouter
   .route("/")
   .get(async (req, res) => {
     // getList
     try {
-      const allProducts = await Product.findAll({
+      const allcategories = await Category.findAll({
         order: [["createdAt", "DESC"]],
       });
-      res.json({ data: allProducts, total: allProducts.length });
+      res.json({ data: allcategories, total: allcategories.length });
     } catch (err) {
       console.log(err);
       res.sendStatus(500);
@@ -19,22 +19,21 @@ productRouter
   })
   .post(async (req, res) => {
     // create
-    console.log(req.body);
     try {
-      const newProduct = await Product.create({ ...req.body });
-      res.json(newProduct);
+      const newCategory = await Category.create({ ...req.body });
+      res.json(newCategory);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
     }
   });
 
-productRouter
+categoryRouter
   .route("/many")
   .patch(async (req, res) => {
     // updateMany
     try {
-      res.json({ data: await Product.updateMany(req.body) });
+      res.json({ data: await Category.updateMany(req.body) });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -42,16 +41,16 @@ productRouter
   })
   .delete(async (req, res) => {
     // deleteMany
-    res.json({ data: await Product.deleteMany(req.body) });
+    res.json({ data: await Category.deleteMany(req.body) });
   });
 
-productRouter
+categoryRouter
   .route("/:id")
   .get(async (req, res) => {
     // getOne
     try {
-      const product = await Product.findByPk(req.params.id);
-      res.json({ data: product });
+      const category = await Category.findByPk(req.params.id);
+      res.json({ data: category });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -60,8 +59,11 @@ productRouter
   .delete(async (req, res) => {
     // delete
     try {
-      await Product.destroy({ where: { id: req.params.id } });
-      res.json({ data: req.body });
+      const category = await Category.findByPk(req.params.id);
+      console.log(category);
+      await Category.destroy({ where: { id: req.params.id } });
+      console.log(category);
+      res.json({ data: category });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -70,16 +72,16 @@ productRouter
   .patch(async (req, res) => {
     // update
     try {
-      await Product.update(
-        { ...(await Product.findByPk(req.params.id)), ...req.body },
+      await Category.update(
+        { ...(await Category.findByPk(req.params.id)), ...req.body },
         { where: { id: req.params.id } }
       );
-      const product = await Product.findByPk(req.params.id);
-      res.json({ data: product });
+      const category = await Category.findByPk(req.params.id);
+      res.json({ data: category });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
     }
   });
 
-module.exports = productRouter;
+module.exports = categoryRouter;
