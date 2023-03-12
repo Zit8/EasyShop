@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 // app.use(express.static("public"));
 
-app.use("/", shopRouter);
+app.use("/shop", shopRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/products", apiProductRouter);
 app.use("/api/categories", apiCategoriesRouter);
