@@ -1,1 +1,2 @@
-export * from './';
+export * from './userTypes';
+export * from './reduxTypes';

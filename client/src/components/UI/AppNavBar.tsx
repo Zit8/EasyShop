@@ -1,3 +1,10 @@
+
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { NavLink } from 'react-router-dom';
+import { logouUserActionThunk } from '../../features/actions';
+import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import {
   AppBar,
   Box,
@@ -70,80 +77,79 @@ const styles = {
   },
 };
 
-function AppNavbar(): JSX.Element {
-  const [openDrawer, setOpenDrawer] = useState(false);
 
-  const handleDrawerToggle = () => {
-    setOpenDrawer(!openDrawer);
+export default function AppNavbar(): JSX.Element {
+  const userData = useAppSelector((state) => state.userData);
+  const dispatch = useAppDispatch();
+
+  const logoutHandler = (): void => {
+    dispatch(logouUserActionThunk()).catch(() => null);
   };
 
   return (
-    <AppBar position="static" style={styles.appBar}>
-      <Container maxWidth="xl">
-        <Toolbar sx={styles.toolbar}>
-          <Grid container justifyContent="space-between" alignItems="center">
-            <Grid item>
-              <Box>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={handleDrawerToggle}
-                  sx={styles.menuIcon}
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Box>
-              <Drawer
-                variant="temporary"
-                anchor="left"
-                open={openDrawer}
-                onClose={handleDrawerToggle}
-                sx={styles.drawer}
-                classes={{ paper: styles.drawerPaper }}
-              >
-                <List sx={styles.list}>
-                  <ListItem button style={{textAlign: 'center',
-    padding: '20px',}}>
-                    <ListItemText primary="О КОМПАНИИ" />
-                  </ListItem>
-                  <ListItem button style={{textAlign: 'center',
-    padding: '20px',}}>
-                    <ListItemText primary="КОНТАКТЫ" />
-                  </ListItem>
-                </List>
-              </Drawer>
-            </Grid>
-            <Grid item>
-              <Box style={styles.logo}>
-                <Typography variant="h6" color="inherit">
-                  <img
-                    src="https://img.icons8.com/cotton/64/null/lemon-cake.png"
-                    alt="Logo"
-                    style={styles.logoImg}
-                  />
-                </Typography>
-                <Typography style={styles.shopName} variant="h4">
-                  SHOP NAME
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item>
-              <Box style={{ display: 'flex' }}>
-                <Link href="/" style={styles.link}>
-                  SING UP
-                </Link>
-                <Link href="/" style={styles.link}>
-                  LOGOOUT
-                </Link>
-                <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
-              </Box>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+  <AppBar position="static" style={styles.appBar}>
+  <Container maxWidth={false} style={{ paddingLeft: 0, paddingRight: 0 }}>
+    <Toolbar sx={styles.toolbar}>
+      <Grid container justifyContent="space-between" alignItems="center">
+        <Grid item>
+          <Box>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleDrawerToggle}
+              sx={styles.menuIcon}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+          <Drawer
+            variant="temporary"
+            anchor="left"
+            open={openDrawer}
+            onClose={handleDrawerToggle}
+            sx={styles.drawer}
+          >
+            <List sx={styles.list}>
+              <ListItem button style={{textAlign: 'center',
+padding: '20px',}}>
+                <ListItemText primary="О КОМПАНИИ" />
+              </ListItem>
+              <ListItem button style={{textAlign: 'center',
+padding: '20px',}}>
+                <ListItemText primary="КОНТАКТЫ" />
+              </ListItem>
+            </List>
+          </Drawer>
+        </Grid>
+        <Grid item>
+          <Box style={styles.logo}>
+            <Typography variant="h6" color="inherit">
+              <img
+                src="https://img.icons8.com/cotton/64/null/lemon-cake.png"
+                alt="Logo"
+                style={styles.logoImg}
+              />
+            </Typography>
+            <Typography style={styles.shopName} variant="h4">
+              SHOP NAME
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box style={{ display: 'flex' }}>
+            <Link href="/youtube" style={styles.link}>
+              SING UP
+            </Link>
+            <Link href="/" style={styles.link}>
+              LOGOUT
+            </Link>
+            <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
+          </Box>
+        </Grid>
+      </Grid>
+    </Toolbar>
+    </Container>
+</AppBar>
+);
 }
-
-export default AppNavbar;
