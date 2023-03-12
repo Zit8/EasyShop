@@ -1,0 +1,8 @@
+name: EasyShop
+id: b2e51602-3394-46bd-ae3b-efbbe16605bf
+language: TypeScript
+extensions:
+  - .ts
+  - .cts
+  - .mts
+  - .tsx
