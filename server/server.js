@@ -5,6 +5,8 @@ const session = require("express-session");
 const store = require("session-file-store");
 const authRouter = require("./routes/authRouter");
 const shopRouter = require("./routes/shopRouter");
+const apiProductRouter = require("./routes/adminPanelRoutes/apiProducts");
+const apiCategoriesRouter = require("./routes/adminPanelRoutes/apiCategories");
 
 require("dotenv").config();
 
@@ -33,7 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 // app.use(express.static("public"));
 
-app.use('/', shopRouter)
+app.use("/", shopRouter);
 app.use("/api/auth/", authRouter);
+app.use("/api/products", apiProductRouter);
+app.use("/api/categories", apiCategoriesRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
