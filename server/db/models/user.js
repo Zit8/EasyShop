@@ -2,20 +2,12 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({
-      Shop,
-      Category,
-      SubCategory,
-      Product,
-      ShoppingCard,
-      ShoppingCartItem,
-    }) {
+    static associate({ Shop, Category, SubCategory, Product, ShoppingCard }) {
       User.hasMany(Shop, { foreignKey: "userId" });
       User.hasMany(Category, { foreignKey: "userId" });
       User.hasMany(SubCategory, { foreignKey: "userId" });
       User.hasMany(Product, { foreignKey: "userId" });
       User.hasMany(ShoppingCard, { foreignKey: "userId" });
-      User.hasMany(ShoppingCartItem, { foreignKey: "userId" });
     }
   }
   User.init(
