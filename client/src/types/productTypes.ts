@@ -15,6 +15,7 @@ export type ProductType = {
 };
 
 export type SubCategoryType = {
+  map(arg0: (category: any) => JSX.Element): any;
   id: number;
   name: string;
   categoryId: number;

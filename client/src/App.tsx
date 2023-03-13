@@ -29,6 +29,7 @@ function App(): JSX.Element {
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         
+        <Route path="/shop/:name" element={<ShopPage />} />
       </Routes>
     </Container>
   );
