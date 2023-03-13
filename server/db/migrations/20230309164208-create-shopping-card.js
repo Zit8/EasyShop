@@ -51,6 +51,10 @@ module.exports = {
       deliveryTime: {
         type: Sequelize.TEXT,
       },
+      paymentStatus: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -22,7 +22,6 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/auth/:type" element={<AuthPage />} />
         <Route path="/:name" element={<ShopPage />} />
-        <Route path="/admin/shop" element={<AdminPanel /> } />
       </Routes>
     </Container>
   );

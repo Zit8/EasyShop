@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { UserFromBackand, UserLoginForm, UserSubmitForm } from '../../types';
+import type { UserFromBackand, UserLoginForm, UserSubmitForm } from '../../types';
+
 
 export const checkUserActionThunk = createAsyncThunk<UserFromBackand>(
   'user/check',
