@@ -2,18 +2,17 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class ShoppingCartItem extends Model {
-    static associate({ ShoppingCard, Product }) {
-      ShoppingCartItem.belongsTo(ShoppingCard, {
-        foreignKey: "shoppingCardId",
+    static associate({ ShoppingCart, Product }) {
+      ShoppingCartItem.belongsTo(ShoppingCart, {
+        foreignKey: "shoppingCartId",
       });
       ShoppingCartItem.belongsTo(Product, { foreignKey: "productId" });
     }
   }
   ShoppingCartItem.init(
     {
-      shoppingCardId: DataTypes.INTEGER,
+      shoppingCartId: DataTypes.INTEGER,
       productId: DataTypes.INTEGER,
-      shopId: DataTypes.INTEGER,
       count: DataTypes.INTEGER,
     },
     {
