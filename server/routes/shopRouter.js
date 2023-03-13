@@ -22,12 +22,14 @@ shopRouter.route("/:name/products").get(async (req, res) => {
       where: {
         shopId: shop.dataValues.id,
       },
-      include: [{
-        model: SubCategory,
-        include: Category
-      }],
+      include: [
+        {
+          model: SubCategory,
+          include: Category,
+        },
+      ],
     });
-    res.json({ allShopProducts });
+    res.json([...allShopProducts]);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
