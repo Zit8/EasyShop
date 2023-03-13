@@ -21,7 +21,7 @@ function App(): JSX.Element {
       <AppNavBar />
       <Routes>
         <Route path="/auth/:type" element={<AuthPage />} />
-        <Route path="/:name" element={<ShopPage />} />
+        <Route path="/shop/:name" element={<ShopPage />} />
       </Routes>
     </Container>
   );

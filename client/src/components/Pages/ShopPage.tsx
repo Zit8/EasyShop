@@ -56,13 +56,16 @@ export default function ShopPage(): JSX.Element {
       <Row style={{ justifyContent: 'space-between' }}>
         <Col md="auto" style={{ width: '20%' }}>
           <Col style={{ fontWeight: 'bold' }}>Все категории</Col>
-          <Col style={{ marginTop: '10px' }}>Шоколад ручной работы</Col>
+          {products.products.map((product) => (
+            <Col>{product.SubCategory.name}</Col>
+          ))}
+          {/* <Col style={{ marginTop: '10px' }}>Шоколад ручной работы</Col>
           <Col>Макарунс</Col>
           <Col>Эклеры</Col>
           <Col>Профитроли</Col>
           <Col>Кексы</Col>
           <Col>Чизкейк</Col>
-          <Col>Бенто торты</Col>
+          <Col>Бенто торты</Col> */}
         </Col>
         <Col xs lg="2" style={{ width: '80%' }}>
           Название текущей категории
