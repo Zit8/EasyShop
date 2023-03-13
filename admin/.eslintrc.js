@@ -24,6 +24,7 @@ module.exports = {
   },
   root: true,
   rules: {
+    "@typescript-eslint/no-unsafe-return": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/consistent-type-imports": [
