@@ -1,6 +1,7 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ShopType } from '../../types/shopTypes';
+import type { ShopType } from '../../types/shopTypes';
 
 type InitSlice = {
   shop: ShopType;
@@ -24,24 +25,20 @@ const initialState: InitSlice = {
   },
 };
 
-export const getShopThunk = createAsyncThunk('shop/fetch', async (name) =>
-  axios<ShopType[]>(`/shop/${name}`)
-    .then((res) => res.data)
-    .catch((err) => console.log(err)),
+export const getShopThunk = createAsyncThunk<ShopType, string | undefined>(
+  'shop/fetch',
+  async (name) =>
+    axios<ShopType>(`/shop/${name}`)
+      .then((res) => res.data)
+      .catch(() => {
+        throw new Error('Error fetching');
+      }),
 );
 
 const shopSlice = createSlice({
   name: 'shopSlice',
   initialState,
-  reducers: {
-    filterShop(state, action) {
-      console.log(action.payload);
-      state.shop = state.shop.filter((shop) =>
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        shop.name.includes(action.payload),
-      );
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getShopThunk.fulfilled, (state, action) => {
       state.shop = action.payload;
@@ -49,5 +46,4 @@ const shopSlice = createSlice({
     });
   },
 });
-export const { filterShop } = shopSlice.actions;
 export default shopSlice.reducer;

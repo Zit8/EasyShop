@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ProductType } from '../../types/productTypes';
+import type { ProductType } from '../../types/productTypes';
 
 type InitSlice = {
   products: ProductType[];
@@ -10,12 +10,16 @@ const initialState: InitSlice = {
   products: [],
 };
 
-export const getProductsThunk = createAsyncThunk(
-  'products/fetch',
-  async (name) =>
-    axios<ProductType[]>(`/shop/${name}/products`)
-      .then((res) => res.data)
-      .catch((err) => console.log(err)),
+export const getProductsThunk = createAsyncThunk<
+  ProductType[],
+  string | undefined
+>('products/fetch', async (name: string | undefined) =>
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  axios<ProductType[]>(`/shop/${name}/products`)
+    .then((res) => res.data)
+    .catch(() => {
+      throw new Error();
+    }),
 );
 const productsSlice = createSlice({
   name: 'productsSlice',

@@ -11,4 +11,18 @@ export type ProductType = {
   userId: number;
   hidden: boolean;
   price?: number;
+  SubCategory: SubCategoryType;
+};
+
+export type SubCategoryType = {
+  id: number;
+  name: string;
+  categoryId: number;
+  userId: number;
+  Category: CategoryType;
+};
+export type CategoryType = {
+  id: number;
+  name: string;
+  userId: number;
 };

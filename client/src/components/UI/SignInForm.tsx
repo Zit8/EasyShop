@@ -1,11 +1,11 @@
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import { signInUserActionThunk } from '../../features/actions';
 import { useAppDispatch } from '../../features/reduxHooks';
-import { UserLoginForm } from '../../types';
+import type { UserLoginForm } from '../../types';
 
 export default function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -20,7 +20,9 @@ export default function LoginPage(): JSX.Element {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(signInUserActionThunk(formInput));
+          dispatch(signInUserActionThunk(formInput)).catch((error) =>
+            console.log(error),
+          );
         }}
       >
         <Container
@@ -67,10 +69,9 @@ export default function LoginPage(): JSX.Element {
                 value={formInput.email}
                 onChange={changeHandler}
                 id="outlined-basic"
-                label="Email"
                 type="email"
                 name="email"
-                variant="outlined"
+                // variant="outlined"
                 style={{
                   borderRadius: '20px',
                   fontSize: '16px',
@@ -95,10 +96,9 @@ export default function LoginPage(): JSX.Element {
                 value={formInput.passwordHash}
                 onChange={changeHandler}
                 id="outlined-basic"
-                label="Password"
                 name="passwordHash"
                 type="password"
-                variant="outlined"
+                // variant="outlined"
                 style={{
                   borderRadius: '20px',
                   fontSize: '16px',

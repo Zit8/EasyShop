@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { signUpUserActionThunk } from '../../features/actions';
 import { useAppDispatch } from '../../features/reduxHooks';
-import { UserSubmitForm } from '../../types';
+import type { UserSubmitForm } from '../../types';
+
 
 export default function SignUpUserForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -11,8 +12,8 @@ export default function SignUpUserForm(): JSX.Element {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const data = Object.fromEntries(
-      new FormData(e.currentTarget),
-    ) as UserSubmitForm;
+      new FormData(e.currentTarget)
+    ) as unknown as UserSubmitForm;
 
     dispatch(signUpUserActionThunk(data)).catch(() => null);
   };

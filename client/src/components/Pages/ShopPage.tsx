@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom';
-import { getShopThunk } from '../../features/Slices/shopSlice';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Input } from 'antd';
+import { getShopThunk } from '../../features/Slices/shopSlice';
+import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { getProductsThunk } from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
 import { ProductType } from '../../types';
@@ -24,11 +24,11 @@ export default function ShopPage(): JSX.Element {
   console.log(shop, 'SHOOOOP');
 
   const shopName = useParams();
-  // console.log(shopName, '<<<<<<<<<<');
+  console.log(shopName, '<<<<<<<<<<');
 
   useEffect(() => {
-    dispatch(getShopThunk(shopName.name));
-    dispatch(getProductsThunk(shopName.name));
+    dispatch(getShopThunk(shopName.name)).catch(() => {});
+    dispatch(getProductsThunk(shopName.name)).catch(() => {});
   }, []);
 
   return (
@@ -66,27 +66,11 @@ export default function ShopPage(): JSX.Element {
         </Col>
         <Col xs lg="2" style={{ width: '80%' }}>
           Название текущей категории
-          {products.allShopProducts.map((product) => {
-            <OneProductCard key={product.id} product={product} />;
-          })}
+          {products.products.map((product) => (
+            <OneProductCard key={product.id} product={product} />
+          ))}
         </Col>
       </Row>
     </Container>
-
-    // <Container style={{ display: 'flex' }}>
-    //   <Row>
-    //     <Container>
-    //       <h1>{shop.shop.name}</h1>
-    //     </Container>
-    //   </Row>
-    //   <Row>
-    //     <Col>
-    //       <Container></Container>
-    //     </Col>
-    //     <Col>
-    //       <Container></Container>
-    //     </Col>
-    //   </Row>
-    // </Container>
   );
 }

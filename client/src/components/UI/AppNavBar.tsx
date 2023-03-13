@@ -2,8 +2,6 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
-import { logouUserActionThunk } from '../../features/actions';
-import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import {
   AppBar,
   Box,
@@ -21,6 +19,8 @@ import {
 import React, { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
+import { logouUserActionThunk } from '../../features/actions';
 
 const styles = {
   appBar: {
@@ -140,10 +140,13 @@ export default function AppNavbar(): JSX.Element {
             </Grid>
             <Grid item>
               <Box style={{ display: 'flex' }}>
-                <Link href="/youtube" style={styles.link}>
-                  SING UP
+                <Link href="/auth/signup" style={styles.link}>
+                  SINGUP
                 </Link>
-                <Link href="/" style={styles.link}>
+                <Link href="/auth/signin" style={styles.link}>
+                  SINGIN
+                </Link>
+                <Link href="/auth/logout" style={styles.link}>
                   LOGOUT
                 </Link>
                 <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
