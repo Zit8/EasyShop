@@ -20,7 +20,7 @@ import React, { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
-// import { logouUserActionThunk } from '../../features/actions';
+import { logouUserActionThunk } from '../../features/actions';
 
 const styles = {
   appBar: {
@@ -140,17 +140,17 @@ export default function AppNavbar(): JSX.Element {
             </Grid>
             <Grid item>
               <Box style={{ display: 'flex' }}>
-              <Link href="/signin" style={styles.link}>
-                  SING IN
+                <Link href="/auth/signup" style={styles.link}>
+                  SINGUP
                 </Link>
-                <Link href="/signup" style={styles.link}>
-                  SING UP
+                <Link href="/auth/signin" style={styles.link}>
+                  SINGIN
                 </Link>
-                <Link href="/" style={styles.link}>
+                <Link href="/auth/logout" style={styles.link}>
                   LOGOUT
                 </Link>
                 <Link href="/bascet">
-                  <ShoppingCartIcon style={{ color: 'black', fontSize: 30 }} />
+                <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
                 </Link>
               </Box>
             </Grid>

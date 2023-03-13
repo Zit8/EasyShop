@@ -4,8 +4,10 @@ import type { DataProvider } from 'react-admin';
 
 const dataApiProvider: DataProvider = {
   getList: async () => {
-    const products = await axios('http://localhost:3001/api/posts');
-    return posts.data;
+    const products = await axios('http://localhost:3001/api/products');
+    console.log('getList', products.data);
+    
+    return products.data;
   },
 } as any;
 

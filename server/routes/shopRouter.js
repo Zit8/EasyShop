@@ -6,7 +6,8 @@ const shopRouter = express.Router();
 shopRouter.route("/:name").get(async (req, res) => {
   try {
     const oneShop = await Shop.findOne({ where: { name: req.params.name } });
-    // console.log(oneShop.dataValues, "===========");
+    console.log(oneShop, "===========");
+
     return res.json(oneShop.dataValues);
   } catch (err) {
     console.log(err);
@@ -22,12 +23,14 @@ shopRouter.route("/:name/products").get(async (req, res) => {
       where: {
         shopId: shop.dataValues.id,
       },
-      include: [{
-        model: SubCategory,
-        include: Category
-      }],
+      include: [
+        {
+          model: SubCategory,
+          include: Category,
+        },
+      ],
     });
-    res.json({ allShopProducts });
+    res.json([...allShopProducts]);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
