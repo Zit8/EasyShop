@@ -45,7 +45,7 @@ const dataApiProvider: DataProvider = {
         await getListCategories();
         break;
       default:
-        break;
+        break;ç
     }
   },
   getOne: async (resource: string, id: IdType) => {
