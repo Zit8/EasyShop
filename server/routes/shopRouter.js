@@ -4,7 +4,7 @@ const {
   Product,
   SubCategory,
   Category,
-  ShoppingCard,
+  ShoppingCart,
   ShoppingCartItem,
 } = require("../db/models");
 
@@ -54,24 +54,16 @@ shopRouter.route("/:name/order").post(async (req, res) => {
       deliveryData,
       deliveryTime,
     } = req.body;
-    console.log(
-      products,
-      userId,
-      deliveryAddress,
-      selfDelivery,
-      deliveryData,
-      deliveryTime
-    );
-    const shopId = await Shop.findOne({ where: { name: req.params.name } });
-    const shoppingCart = await ShoppingCard.create({
-      shopId: shopId.dataValues.id,
+    const shop = await Shop.findOne({ where: { name: req.params.name } });
+    const shoppingCart = await ShoppingCart.create({
+      shopId: shop.dataValues.id,
       userId,
       deliveryAddress,
       selfDelivery,
       deliveryData,
       deliveryTime,
     });
-    await ShoppingCartItem.addProducts(products, shopId, shoppingCart.id);
+    await ShoppingCartItem.addProducts(products, shop.dataValues.id, shoppingCart.id);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
