@@ -8,6 +8,9 @@ import AuthPage from './components/Pages/AuthPage';
 import { useAppDispatch, useAppSelector } from './features/reduxHooks';
 import { checkUserActionThunk } from './features/actions';
 import ShopPage from './components/Pages/ShopPage';
+import MainPage from './MainPage';
+import OrderForm from './components/UI/OrderForm';
+import ShopingCartPage from './components/Pages/ShopingCartPage';
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -19,8 +22,12 @@ function App(): JSX.Element {
     <Container>
       <AppNavBar />
       <Routes>
+        <Route path="/" element={<MainPage />} />//! for test
         <Route path="/auth/:type" element={<AuthPage />} />
         <Route path="/:name" element={<ShopPage />} />
+        <Route path="/orderform" element={<OrderForm />} />
+        <Route path="/bascet" element={<ShopingCartPage />} />
+        
       </Routes>
     </Container>
   );
