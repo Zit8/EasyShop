@@ -12,16 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: "ShoppingCards",
-          },
-          key: "id",
-        },
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Users",
+            tableName: "ShoppingCarts",
           },
           key: "id",
         },
@@ -35,14 +26,9 @@ module.exports = {
           key: "id",
         },
       },
-      shopId: {
+      count: {
         type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Shops",
-          },
-          key: "id",
-        },
+        defaultValue: 1,
       },
       createdAt: {
         allowNull: false,
