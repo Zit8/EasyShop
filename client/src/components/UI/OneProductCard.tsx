@@ -13,13 +13,15 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Add, Remove } from '@mui/icons-material';
-import type { Drink } from '../../types';
+import type { ProductType } from '../../types';
 
-type OneCardProps = {
-  drink: Drink;
+type OneProductCardProps = {
+  product: ProductType;
 };
 
-export default function OneCard({ drink }: OneCardProps): JSX.Element {
+export default function OneProductCard({
+  product,
+}: OneProductCardProps): JSX.Element {
   const [count, setCount] = useState(0);
 
   const handleOrder = (): void => {
@@ -53,8 +55,8 @@ export default function OneCard({ drink }: OneCardProps): JSX.Element {
         sx={{ marginTop: '10px', borderRadius: 2 }}
         component="img"
         height="140"
-        image={drink.strDrinkThumb}
-        alt={drink.strDrink}
+        image={product.image}
+        alt="херня"
       />
       <CardContent>
         <Grid
@@ -74,7 +76,7 @@ export default function OneCard({ drink }: OneCardProps): JSX.Element {
           </Grid>
           <Grid item>
             <Typography align="center" sx={{ wordWrap: 'break-word' }}>
-              {drink.strDrink}
+              {product.name}
             </Typography>
           </Grid>
           <Grid item>
@@ -98,11 +100,11 @@ export default function OneCard({ drink }: OneCardProps): JSX.Element {
       >
         <div>
           <TextField
-             required
-             id="outlined-required"
-             label="Количество"
-             defaultValue="Hello World"
-             sx={{ display: 'block', margin: '0 auto' }}
+            required
+            id="outlined-required"
+            label="Количество"
+            defaultValue="Hello World"
+            sx={{ display: 'block', margin: '0 auto' }}
             value={count}
             type="number"
             InputProps={{ inputProps: { min: 0 } }}

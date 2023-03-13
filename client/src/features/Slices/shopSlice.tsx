@@ -20,11 +20,12 @@ const initialState: InitSlice = {
     finishingTime: '',
     weekdays: '',
     userId: 0,
+    ratingLink: '',
   },
 };
 
 export const getShopThunk = createAsyncThunk('shop/fetch', async (name) =>
-  axios<ShopType[]>(`/api/${name}`)
+  axios<ShopType[]>(`/shop/${name}`)
     .then((res) => res.data)
     .catch((err) => console.log(err)),
 );

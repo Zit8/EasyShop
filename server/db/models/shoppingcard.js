@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       selfDelivery: DataTypes.BOOLEAN,
       deliveryDate: DataTypes.TEXT,
       deliveryTime: DataTypes.TEXT,
+      paymentStatus: DataTypes.BOOLEAN,
     },
     {
       sequelize,
