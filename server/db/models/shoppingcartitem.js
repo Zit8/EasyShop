@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
   ShoppingCartItem.init(
     {
       shoppingCardId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
       productId: DataTypes.INTEGER,
       shopId: DataTypes.INTEGER,
       count: DataTypes.INTEGER,
