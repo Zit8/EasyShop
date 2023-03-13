@@ -8,6 +8,7 @@ import AuthPage from './components/Pages/AuthPage';
 import { useAppDispatch, useAppSelector } from './features/reduxHooks';
 import { checkUserActionThunk } from './features/actions';
 import ShopPage from './components/Pages/ShopPage';
+import AdminPanel from './admin/Admin';
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -21,6 +22,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/auth/:type" element={<AuthPage />} />
         <Route path="/:name" element={<ShopPage />} />
+        <Route path="/admin/shop" element={<AdminPanel /> } />
       </Routes>
     </Container>
   );
