@@ -6,7 +6,8 @@ const shopRouter = express.Router();
 shopRouter.route("/:name").get(async (req, res) => {
   try {
     const oneShop = await Shop.findOne({ where: { name: req.params.name } });
-    // console.log(oneShop.dataValues, "===========");
+    console.log(oneShop, "===========");
+
     return res.json(oneShop.dataValues);
   } catch (err) {
     console.log(err);
