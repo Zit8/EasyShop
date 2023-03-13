@@ -17,15 +17,6 @@ module.exports = {
           key: "id",
         },
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Users",
-          },
-          key: "id",
-        },
-      },
       productId: {
         type: Sequelize.INTEGER,
         references: {
@@ -35,14 +26,9 @@ module.exports = {
           key: "id",
         },
       },
-      shopId: {
+      count: {
         type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Shops",
-          },
-          key: "id",
-        },
+        defaultValue: 1,
       },
       createdAt: {
         allowNull: false,
