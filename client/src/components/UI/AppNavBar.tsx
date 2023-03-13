@@ -77,12 +77,12 @@ const styles = {
 };
 
 export default function AppNavbar(): JSX.Element {
-  const userData = useAppSelector((state) => state.userData);
-  const dispatch = useAppDispatch();
+  // const userData = useAppSelector((state) => state.userData);
+  // const dispatch = useAppDispatch();
 
-  const logoutHandler = (): void => {
-    dispatch(logouUserActionThunk()).catch(() => null);
-  };
+  // const logoutHandler = (): void => {
+  //   dispatch(logouUserActionThunk()).catch(() => null);
+  // };
 
   return (
     <AppBar position="static" style={styles.appBar}>
@@ -149,7 +149,9 @@ export default function AppNavbar(): JSX.Element {
                 <Link href="/auth/logout" style={styles.link}>
                   LOGOUT
                 </Link>
+                <Link href="/bascet">
                 <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
+                </Link>
               </Box>
             </Grid>
           </Grid>
