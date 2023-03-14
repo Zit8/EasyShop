@@ -20,5 +20,18 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "ShoppingCartItem",
     }
   );
+
+  ShoppingCartItem.addProducts = async function (
+    products,
+    shoppingCartId
+  ) {
+    products.forEach(async (product) => {
+      await ShoppingCartItem.create({
+        productId: product.id,
+        count: product.count,
+        shoppingCartId,
+      });
+    });
+  };
   return ShoppingCartItem;
 };
