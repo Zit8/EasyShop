@@ -25,7 +25,7 @@ function App(): JSX.Element {
     <Container>
       <AppNavBar />
       <Routes>
-        <Route path="/" element={<MainPage />} />//! for test
+        <Route path="/" element={<MainPage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
         <Route path="/:name" element={<ShopPage />} />
         <Route path="/orderform" element={<OrderForm />} />

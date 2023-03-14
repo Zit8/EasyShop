@@ -1,11 +1,8 @@
-import React from 'react'
+// import React from 'react';
 
-export default function ShopingCartPage():JSX.Element {
-  return (
-    <div>ShopingCartPage</div>
-  )
-}
-
+// export default function ShopingCartPage(): JSX.Element {
+//   return <div>ShopingCartPage</div>;
+// }
 
 // import React from 'react';
 // import { makeStyles } from '@material-ui/core/styles';

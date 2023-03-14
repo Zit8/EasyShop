@@ -31,6 +31,15 @@ export default function ShopPage(): JSX.Element {
     dispatch(getProductsThunk(shopName.name)).catch(() => {});
   }, []);
 
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setInput(e.target.value);
+    dispatch(productsNameInputFilter(e.target.value));
+    if (input.length === 0) {
+      dispatch(getProductsThunk(shopName.name)).catch(() => {});
+    }
+  };
+
   return (
     <Container>
       <Row className="mt-5" style={{ display: 'flex' }}>
@@ -63,12 +72,12 @@ export default function ShopPage(): JSX.Element {
             <Col key={subcategoryName}>{subcategoryName}</Col>
           ))}
         </Col>
-        <Col xs lg="2" style={{ width: '80%' }}>
+        <Row xs lg="2" style={{ width: '80%' }}>
           Название текущей категории
           {products.products.map((product) => (
             <OneProductCard key={product.id} product={product} />
           ))}
-        </Col>
+        </Row>
       </Row>
     </Container>
   );
