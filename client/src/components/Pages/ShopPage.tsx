@@ -27,14 +27,14 @@ export default function ShopPage(): JSX.Element {
   useEffect(() => {
     dispatch(getShopThunk(shopName.name)).catch(() => {});
     dispatch(getProductsThunk(shopName.name)).catch(() => {});
-    if (input.length === 0) {
-      dispatch(getProductsThunk(shopName.name)).catch(() => {});
-    }
   }, []);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput(e.target.value);
     dispatch(productsNameInputFilter(e.target.value));
+    if (input.length === 0) {
+      dispatch(getProductsThunk(shopName.name)).catch(() => {});
+    }
   };
   return (
     <Container>
