@@ -10,8 +10,10 @@ import { checkUserActionThunk } from './features/actions';
 import ShopPage from './components/Pages/ShopPage';
 import MainPage from './MainPage';
 import OrderForm from './components/UI/OrderForm';
-// import ShopingCartPage from './components/Pages/ShopingCartPage';
-// import AdminPanel from './admin/Admin';
+import ShopingCartPage from './components/Pages/ShopingCartPage';
+import ContactPage from './components/Pages/ContactPage';
+//import AdminPanel from './admin/Admin';
+
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -27,8 +29,8 @@ function App(): JSX.Element {
         <Route path="/auth/:type" element={<AuthPage />} />
         <Route path="/:name" element={<ShopPage />} />
         <Route path="/orderform" element={<OrderForm />} />
-        {/* <Route path="/bascet" element={<ShopingCartPage />} /> */}
-
+        <Route path="/bascet" element={<ShopingCartPage />} />
+        <Route path="/:name/contacts" element={<ContactPage />} />
         <Route path="/shop/:name" element={<ShopPage />} />
       </Routes>
     </Container>

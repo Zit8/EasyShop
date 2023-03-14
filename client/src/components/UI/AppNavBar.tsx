@@ -75,6 +75,8 @@ const styles = {
   listItem: {
     textAlign: 'center',
     padding: '20px',
+    color: 'black',
+    textDecoration: 'none',
   },
 };
 
@@ -88,6 +90,8 @@ export default function AppNavbar(): JSX.Element {
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
+const dispatch = useAppDispatch();
+const shop = useAppSelector((state)=> state.shop)
 
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
@@ -120,12 +124,12 @@ export default function AppNavbar(): JSX.Element {
                 sx={{ width: '240px' }}
               >
                 <List sx={styles.list}>
-                  <ListItem button sx={styles.listItem}>
-                    <ListItemText primary="О КОМПАНИИ" />
-                  </ListItem>
-                  <ListItem button sx={styles.listItem}>
-                    <ListItemText primary="КОНТАКТЫ" />
-                  </ListItem>
+                  <Link href="/:name/contacts" sx={styles.listItem} >
+                    О КОМПАНИИ
+                  </Link>
+                  <Link href="/:name/contacts" sx={styles.listItem}>
+                    КОНТАКТЫ
+                  </Link>
                 </List>
               </Drawer>
             </Grid>
@@ -139,7 +143,7 @@ export default function AppNavbar(): JSX.Element {
                   />
                 </Typography>
                 <Typography style={styles.shopName} variant="h4">
-                  SHOP NAME
+                  {shop.shop.name}
                 </Typography>
               </Box>
             </Grid>

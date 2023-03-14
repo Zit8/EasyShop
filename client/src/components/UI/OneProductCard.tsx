@@ -52,7 +52,12 @@ export default function OneProductCard({
       }}
     >
       <CardMedia
-        sx={{ marginTop: '10px', borderRadius: 2 }}
+        sx={{
+          marginTop: '10px',
+          borderRadius: 2,
+          maxWidth: '100%',
+          height: 'auto',
+        }}
         component="img"
         height="140"
         image={product.image}
@@ -66,23 +71,32 @@ export default function OneProductCard({
           alignItems="center"
         >
           <Grid item>
-            <IconButton
-              size="small"
-              style={{ borderRadius: '50%', border: '1px solid black' }}
-              onClick={handleDecrement}
-            >
-              <Remove />
-            </IconButton>
+          <IconButton
+  size="small"
+  style={{ borderRadius: '50%', border: '1px solid black', transform: 'scale(0.8)' }}
+  onClick={handleDecrement}
+>
+  <Remove />
+</IconButton>
+
           </Grid>
           <Grid item>
-            <Typography align="center" sx={{ wordWrap: 'break-word' }}>
+            <Typography
+              align="center"
+              sx={{
+                wordWrap: 'break-word',
+                fontSize: 14,
+                p: 1,
+                textAlign: 'center',
+              }}
+            >
               {product.name}
             </Typography>
           </Grid>
           <Grid item>
             <IconButton
               size="small"
-              style={{ borderRadius: '50%', border: '1px solid black' }}
+              style={{ borderRadius: '50%', border: '1px solid black',transform: 'scale(0.8)' }}
               onClick={handleIncrement}
             >
               <Add />
