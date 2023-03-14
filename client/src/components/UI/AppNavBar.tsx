@@ -21,6 +21,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { logouUserActionThunk } from '../../features/actions';
+//import '@fontsource/inter';
 
 const styles = {
   appBar: {
@@ -77,6 +78,16 @@ const styles = {
 };
 
 export default function AppNavbar(): JSX.Element {
+  const [open, setOpen] = useState(false);
+
+  const handleDrawerOpen = (): void => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = (): void => {
+    setOpen(false);
+  };
+
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
 
@@ -92,11 +103,10 @@ export default function AppNavbar(): JSX.Element {
             <Grid item>
               <Box>
                 <IconButton
+                  aria-label="open drawer"
                   edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  // onClick={handleDrawerToggle}
-                  sx={styles.menuIcon}
+                  onClick={handleDrawerOpen}
+                  sx={{ mr: 2, ...(open && { display: 'none' }) }}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -104,21 +114,15 @@ export default function AppNavbar(): JSX.Element {
               <Drawer
                 variant="temporary"
                 anchor="left"
-                // open={openDrawer}
-                // onClose={handleDrawerToggle}
-                sx={styles.drawer}
+                open={open}
+                onClose={handleDrawerClose}
+                sx={{ width: '240px' }}
               >
                 <List sx={styles.list}>
-                  <ListItem
-                    button
-                    style={{ textAlign: 'center', padding: '20px' }}
-                  >
+                  <ListItem button sx={styles.listItem}>
                     <ListItemText primary="О КОМПАНИИ" />
                   </ListItem>
-                  <ListItem
-                    button
-                    style={{ textAlign: 'center', padding: '20px' }}
-                  >
+                  <ListItem button sx={styles.listItem}>
                     <ListItemText primary="КОНТАКТЫ" />
                   </ListItem>
                 </List>
@@ -150,7 +154,7 @@ export default function AppNavbar(): JSX.Element {
                   LOGOUT
                 </Link>
                 <Link href="/bascet">
-                <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
+                  <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
                 </Link>
               </Box>
             </Grid>
