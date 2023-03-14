@@ -6,6 +6,7 @@
     "@ant-design/icons": "^5.0.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fontsource/inter": "^4.5.15",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.122",
     "@mui/material": "^5.11.12",

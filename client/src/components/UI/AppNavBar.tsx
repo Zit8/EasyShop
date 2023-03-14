@@ -21,7 +21,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { logouUserActionThunk } from '../../features/actions';
-//import '@fontsource/inter';
+import '@fontsource/inter';
 
 const styles = {
   appBar: {
@@ -53,6 +53,7 @@ const styles = {
     fontSize: '24px',
     fontWeight: 'bold',
     marginLeft: '10px',
+    color: 'black'
   },
   drawer: {
     width: '240px',
