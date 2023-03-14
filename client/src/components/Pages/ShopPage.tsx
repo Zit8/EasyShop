@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -6,16 +6,14 @@ import Col from 'react-bootstrap/Col';
 import { Input } from 'antd';
 import { getShopThunk } from '../../features/Slices/shopSlice';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
-import { getProductsThunk } from '../../features/Slices/productsSlice';
+import {
+  getProductsThunk,
+  productsNameInputFilter,
+} from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
-import { ProductType } from '../../types';
-// import { SearchOutlined } from '@ant-design/icons';
-
-// type ProductsProps = {
-//   products: ProductType[];
-// };
 
 export default function ShopPage(): JSX.Element {
+  const [input, setInput] = useState('');
   const dispatch = useAppDispatch();
   const shop = useAppSelector((state) => state.shop);
   const products = useAppSelector((state) => state.products);
@@ -29,8 +27,15 @@ export default function ShopPage(): JSX.Element {
   useEffect(() => {
     dispatch(getShopThunk(shopName.name)).catch(() => {});
     dispatch(getProductsThunk(shopName.name)).catch(() => {});
+    if (input.length === 0) {
+      dispatch(getProductsThunk(shopName.name)).catch(() => {});
+    }
   }, []);
 
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setInput(e.target.value);
+    dispatch(productsNameInputFilter(e.target.value));
+  };
   return (
     <Container>
       <h1>{shop.shop.name}</h1>
@@ -44,7 +49,9 @@ export default function ShopPage(): JSX.Element {
             style={{ width: '29px', height: '29px', marginRight: '4px' }}
           />
           <Input
-            placeholder="Найти товар..."
+            placeholder="Найти товар по имени..."
+            value={input}
+            onChange={inputHandler}
             style={{
               width: '300px',
               borderRadius: '15px',
