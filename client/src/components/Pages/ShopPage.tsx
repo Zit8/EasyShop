@@ -71,12 +71,12 @@ export default function ShopPage(): JSX.Element {
             <Col key={subcategoryName}>{subcategoryName}</Col>
           ))}
         </Col>
-        <Col xs lg="2" style={{ width: '80%' }}>
+        <Row xs lg="2" style={{ width: '80%' }}>
           Название текущей категории
           {products.products.map((product) => (
             <OneProductCard key={product.id} product={product} />
           ))}
-        </Col>
+        </Row>
       </Row>
     </Container>
   );
