@@ -1,5 +1,12 @@
 const express = require("express");
-const { Shop, Product, SubCategory, Category } = require("../db/models");
+const {
+  Shop,
+  Product,
+  SubCategory,
+  Category,
+  ShoppingCart,
+  ShoppingCartItem,
+} = require("../db/models");
 
 const shopRouter = express.Router();
 
@@ -31,6 +38,33 @@ shopRouter.route("/:name/products").get(async (req, res) => {
       ],
     });
     res.json([...allShopProducts]);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
+shopRouter.route("/:name/order").post(async (req, res) => {
+  try {
+    const {
+      products,
+      userId,
+      deliveryAddress,
+      selfDelivery,
+      deliveryData,
+      deliveryTime,
+    } = req.body;
+    const shop = await Shop.findOne({ where: { name: req.params.name } });
+    const shoppingCart = await ShoppingCart.create({
+      shopId: shop.dataValues.id,
+      userId,
+      deliveryAddress,
+      selfDelivery,
+      deliveryData,
+      deliveryTime,
+    });
+    await ShoppingCartItem.addProducts(products, shop.dataValues.id, shoppingCart.id);
+    res.sendStatus(200);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
