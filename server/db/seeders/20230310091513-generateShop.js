@@ -30,6 +30,19 @@ module.exports = {
           weekdays: "sunday",
           userId: 1,
         },
+        {
+          name: "aliexpress",
+          description: "AliExpress — глобальная виртуальная торговая площадка, предоставляющая возможность покупать товары производителей из КНР, а также России, Европы, Турции и других стран. Товары на площадке продаются в розницу и мелким оптом. Платформа не работает в КНР — там её заменяет",
+          logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmHH1xq0jOQeeLbb3y0brS4RqlzDzMHF5p8g&usqp=CAU",
+          city: "Beijeng",
+          address: "123112, Beijeng, Ghgghhy., д. 10, dddd С, Ghjkhdkhckdschj",
+          phone: "8967545344567",
+          email: "alick@mail.com",
+          startTime: "08:00",
+          finishingTime: "22:22",
+          weekdays: "sunday",
+          userId: 1,
+        },
       ],
       {}
     );
