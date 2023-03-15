@@ -9,23 +9,34 @@ import { MenuItem, Select, TextField, Grid, FormControl } from '@mui/material';
 import { DatePicker } from '@mui/lab';
 import InputLabel from '@mui/material/InputLabel';
 
+export type OrderhandlerInputType = {
+  name: string;
+  selfDelivery: boolean;
+  paymentWay: boolean;
+  street: string;
+  city: string;
+};
+
 export default function OrderForm(): JSX.Element {
-  const [orderhandlerInput, setOrderHandlerInput] = useState({
-    name: '',
-    selfDelivery: true,
-    paymentWay: true,
-    street: '',
-    city: '',
-  });
-  console.log(orderhandlerInput);
+  const [orderhandlerInput, setOrderHandlerInput] =
+    useState<OrderhandlerInputType>({
+      name: '',
+      selfDelivery: true,
+      paymentWay: true,
+      street: '',
+      city: '',
+    });
 
   const changeHandlerInput = (
-    e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>
-  ): void => {
+    e: React.ChangeEvent<{
+      name?: string | boolean | undefined;
+      value: unknown;
+    }>,
+  ):void => {
     const { name, value } = e.target;
     setOrderHandlerInput((prev) => ({
       ...prev,
-      [name as string]: value,
+      [name as string]: value as OrderhandlerInputType | undefined,
     }));
   };
   const { name, selfDelivery, paymentWay, street, city } = orderhandlerInput;
@@ -135,7 +146,7 @@ export default function OrderForm(): JSX.Element {
         </CardContent>
 
         <CardActions sx={{ justifyContent: 'center' }}>
-          <Button size="small">Отправить</Button>
+          <Button  size="small">Отправить</Button>
         </CardActions>
       </Card>
     </Box>

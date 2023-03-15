@@ -82,9 +82,7 @@ const styles = {
 
 export default function AppNavbar(): JSX.Element {
   const shopName = useParams();
-  console.log(shopName)
   const [open, setOpen] = useState(false);
-
   const handleDrawerOpen = (): void => {
     setOpen(true);
   };

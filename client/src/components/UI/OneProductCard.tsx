@@ -11,11 +11,8 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { Add, Remove } from '@mui/icons-material';
-import { useParams } from 'react-router-dom';
 import type { ProductType } from '../../types';
-import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 
 type OneProductCardProps = {
   product: ProductType;
@@ -25,26 +22,13 @@ export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
   const [count, setCount] = useState(0);
-  const dispatch = useAppDispatch();
-  const shop = useAppSelector((state) => state.shop);
-  const products = useAppSelector((state) => state.products);
-  console.log(products, '<<<<<<');
-
-  console.log(shop, 'SHOOOOP');
-
-  const shopName = useParams();
-  console.log(shopName, '<<<<<<<<<<');
-
   const handleOrder = (): void => {};
-
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
   };
-
   const handleDecrement = (): void => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
   };
-
   return (
     <Card
       sx={{

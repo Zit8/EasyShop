@@ -9,22 +9,18 @@ import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import {
   getProductsThunk,
   productsNameInputFilter,
+  productsNameCategoryFilter,
 } from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
-import { ProductType } from '../../types';
-// import { SearchOutlined } from '@ant-design/icons';
-
-// type ProductsProps = {
-//   products: ProductType[];
-// };
+import OneCategory from '../UI/OneCategory';
 
 export default function ShopPage(): JSX.Element {
   const [input, setInput] = useState('');
   const dispatch = useAppDispatch();
-  const shop = useAppSelector((state) => state.shop);
   const products = useAppSelector((state) => state.products.filterProducts);
+  const productsConst = useAppSelector((state) => state.products.products);
   const shopName = useParams();
-  
+
   useEffect(() => {
     dispatch(getShopThunk(shopName.urlName)).catch(() => {});
     dispatch(getProductsThunk(shopName.urlName)).catch(() => {});
@@ -37,6 +33,9 @@ export default function ShopPage(): JSX.Element {
       dispatch(getProductsThunk(shopName.urlName)).catch(() => {});
     }
   };
+  const handlerCategory = (categoryName: string): void => {
+    dispatch(productsNameCategoryFilter(categoryName));
+  };
 
   return (
     <Container>
@@ -48,6 +47,7 @@ export default function ShopPage(): JSX.Element {
           <img
             src="https://img.icons8.com/ios/50/null/search--v1.png"
             style={{ width: '29px', height: '29px', marginRight: '4px' }}
+            alt="search"
           />
           <Input
             value={input}
@@ -63,15 +63,22 @@ export default function ShopPage(): JSX.Element {
       </Row>
       <Row style={{ justifyContent: 'space-between' }}>
         <Col md="auto" style={{ width: '20%' }}>
-          <Col style={{ fontWeight: 'bold' }}>Все категории</Col>
+          <Col
+            onClick={() => dispatch(productsNameInputFilter(''))}
+            style={{ fontWeight: 'bold' }}
+          >
+            Все категории
+          </Col>
           {Array.from(
-            new Set(products.map((product) => product.SubCategory.name)),
+            new Set(productsConst.map((product) => product.SubCategory.name)),
           ).map((subcategoryName) => (
-            <Col key={subcategoryName}>{subcategoryName}</Col>
+            <OneCategory
+              subcategoryName={subcategoryName}
+              handlerCategory={handlerCategory}
+            />
           ))}
         </Col>
-        <Row xs lg="2" style={{ width: '80%' }}>
-          Название текущей категории
+        <Row lg="2" style={{ width: '80%' }}>
           {products.map((product) => (
             <OneProductCard key={product.id} product={product} />
           ))}
