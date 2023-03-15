@@ -60,9 +60,7 @@ categoryRouter
     // delete
     try {
       const category = await Category.findByPk(req.params.id);
-      console.log(category);
       await Category.destroy({ where: { id: req.params.id } });
-      console.log(category);
       res.json({ data: category });
     } catch (error) {
       console.log(error);

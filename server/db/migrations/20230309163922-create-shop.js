@@ -45,6 +45,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      ratingLink: {
+        type: Sequelize.TEXT,
+      },
+      urlName: {
+        type: Sequelize.TEXT,
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

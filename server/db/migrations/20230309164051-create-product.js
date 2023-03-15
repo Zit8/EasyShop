@@ -24,6 +24,17 @@ module.exports = {
       unit: {
         type: Sequelize.TEXT,
       },
+      weight: {
+        type: Sequelize.INTEGER,
+      },
+      weightUnit: {
+        type: Sequelize.TEXT,
+      },
+      currency: {
+        type: Sequelize.TEXT,
+        defaultValue: "₽",
+        allowNull: false,
+      },
       subcategoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -61,6 +72,9 @@ module.exports = {
       hidden: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
+      },
+      price: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
