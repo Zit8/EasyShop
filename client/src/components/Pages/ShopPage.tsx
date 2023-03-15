@@ -23,12 +23,8 @@ export default function ShopPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const shop = useAppSelector((state) => state.shop);
   const products = useAppSelector((state) => state.products.filterProducts);
- 
-
   const shopName = useParams();
-  console.log(input);
   
-
   useEffect(() => {
     dispatch(getShopThunk(shopName.name)).catch(() => {});
     dispatch(getProductsThunk(shopName.name)).catch(() => {});
