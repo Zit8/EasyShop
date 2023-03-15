@@ -28,9 +28,13 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     productsNameInputFilter(state, action) {
-      console.log(action.payload);
       state.filterProducts = state.products.filter((product) =>
         product.name.includes(action.payload),
+      );
+    },
+    productsNameCategoryFilter(state, action) {
+      state.filterProducts = state.products.filter((product) =>
+        product.SubCategory.name === action.payload,
       );
     },
   },
@@ -43,5 +47,5 @@ const productsSlice = createSlice({
   },
 });
 
-export const { productsNameInputFilter } = productsSlice.actions;
+export const { productsNameInputFilter,productsNameCategoryFilter } = productsSlice.actions;
 export default productsSlice.reducer;

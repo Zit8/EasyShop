@@ -9,9 +9,10 @@ import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import {
   getProductsThunk,
   productsNameInputFilter,
+  productsNameCategoryFilter,
 } from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
-import { ProductType } from '../../types';
+import { ProductType, SubCategoryType } from '../../types';
 // import { SearchOutlined } from '@ant-design/icons';
 
 // type ProductsProps = {
@@ -23,8 +24,9 @@ export default function ShopPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const shop = useAppSelector((state) => state.shop);
   const products = useAppSelector((state) => state.products.filterProducts);
+  const productsConst = useAppSelector((state) => state.products.products);
   const shopName = useParams();
-  
+
   useEffect(() => {
     dispatch(getShopThunk(shopName.name)).catch(() => {});
     dispatch(getProductsThunk(shopName.name)).catch(() => {});
@@ -36,6 +38,9 @@ export default function ShopPage(): JSX.Element {
     if (input.length === 0) {
       dispatch(getProductsThunk(shopName.name)).catch(() => {});
     }
+  };
+  const handlerCategory = (categoryName: string): void => {
+    dispatch(productsNameCategoryFilter(categoryName));
   };
 
   return (
@@ -64,15 +69,26 @@ export default function ShopPage(): JSX.Element {
       </Row>
       <Row style={{ justifyContent: 'space-between' }}>
         <Col md="auto" style={{ width: '20%' }}>
-          <Col style={{ fontWeight: 'bold' }}>Все категории</Col>
+          <Col
+            onClick={() => dispatch(productsNameInputFilter(''))}
+            style={{ fontWeight: 'bold' }}
+          >
+            Все категории
+          </Col>
           {Array.from(
-            new Set(products.map((product) => product.SubCategory.name)),
+            new Set(productsConst.map((product) => product.SubCategory.name)),
           ).map((subcategoryName) => (
-            <Col key={subcategoryName}>{subcategoryName}</Col>
+            <Col
+              mt={5}
+              onmouseover={{ color: 'blue' }}
+              onClick={() => handlerCategory(subcategoryName)}
+              key={subcategoryName}
+            >
+              {subcategoryName}
+            </Col>
           ))}
         </Col>
-        <Row xs lg="2" style={{ width: '80%' }}>
-          Название текущей категории
+        <Row lg="2" style={{ width: '80%' }}>
           {products.map((product) => (
             <OneProductCard key={product.id} product={product} />
           ))}

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import KladrComponent from 'my-app/src/components/TestCompannet';
 import AppNavBar from './components/UI/AppNavBar';
 import AuthPage from './components/Pages/AuthPage';
 import { useAppDispatch, useAppSelector } from './features/reduxHooks';
