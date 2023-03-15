@@ -48,6 +48,7 @@ export default function ShopPage(): JSX.Element {
           <img
             src="https://img.icons8.com/ios/50/null/search--v1.png"
             style={{ width: '29px', height: '29px', marginRight: '4px' }}
+            alt="search"
           />
           <Input
             value={input}
