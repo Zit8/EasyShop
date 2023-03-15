@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -6,7 +6,10 @@ import Col from 'react-bootstrap/Col';
 import { Input } from 'antd';
 import { getShopThunk } from '../../features/Slices/shopSlice';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
-import { getProductsThunk, productsNameInputFilter } from '../../features/Slices/productsSlice';
+import {
+  getProductsThunk,
+  productsNameInputFilter,
+} from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
 import { ProductType } from '../../types';
 // import { SearchOutlined } from '@ant-design/icons';
@@ -16,21 +19,16 @@ import { ProductType } from '../../types';
 // };
 
 export default function ShopPage(): JSX.Element {
+  const [input, setInput] = useState('');
   const dispatch = useAppDispatch();
   const shop = useAppSelector((state) => state.shop);
-  const products = useAppSelector((state) => state.products);
-  console.log(products, '<<<<<<');
-
-  console.log(shop, 'SHOOOOP');
-
+  const products = useAppSelector((state) => state.products.filterProducts);
   const shopName = useParams();
-  console.log(shopName, '<<<<<<<<<<');
-
+  
   useEffect(() => {
     dispatch(getShopThunk(shopName.name)).catch(() => {});
     dispatch(getProductsThunk(shopName.name)).catch(() => {});
   }, []);
-
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput(e.target.value);
@@ -52,6 +50,8 @@ export default function ShopPage(): JSX.Element {
             style={{ width: '29px', height: '29px', marginRight: '4px' }}
           />
           <Input
+            value={input}
+            onChange={inputHandler}
             placeholder="Найти товар..."
             style={{
               width: '300px',
@@ -65,16 +65,14 @@ export default function ShopPage(): JSX.Element {
         <Col md="auto" style={{ width: '20%' }}>
           <Col style={{ fontWeight: 'bold' }}>Все категории</Col>
           {Array.from(
-            new Set(
-              products.products.map((product) => product.SubCategory.name),
-            ),
+            new Set(products.map((product) => product.SubCategory.name)),
           ).map((subcategoryName) => (
             <Col key={subcategoryName}>{subcategoryName}</Col>
           ))}
         </Col>
         <Row xs lg="2" style={{ width: '80%' }}>
           Название текущей категории
-          {products.products.map((product) => (
+          {products.map((product) => (
             <OneProductCard key={product.id} product={product} />
           ))}
         </Row>

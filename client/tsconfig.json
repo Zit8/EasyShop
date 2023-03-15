@@ -16,5 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "../admin/src/dataProvider"]
+  "include": [
+    "src",
+    "../admin/src/dataProvider",
+    "../../../telegramm_react_app/my-app/src/components/KladrComponent.jsx"
+  ]
 }
