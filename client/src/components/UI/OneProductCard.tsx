@@ -13,7 +13,9 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Add, Remove } from '@mui/icons-material';
+import { useParams } from 'react-router-dom';
 import type { ProductType } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 
 type OneProductCardProps = {
   product: ProductType;
@@ -23,10 +25,17 @@ export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
   const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
+  const shop = useAppSelector((state) => state.shop);
+  const products = useAppSelector((state) => state.products);
+  console.log(products, '<<<<<<');
 
-  const handleOrder = (): void => {
-    // Handle order button click
-  };
+  console.log(shop, 'SHOOOOP');
+
+  const shopName = useParams();
+  console.log(shopName, '<<<<<<<<<<');
+
+  const handleOrder = (): void => {};
 
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
@@ -52,7 +61,12 @@ export default function OneProductCard({
       }}
     >
       <CardMedia
-        sx={{ marginTop: '10px', borderRadius: 2 }}
+        sx={{
+          marginTop: '10px',
+          borderRadius: 2,
+          maxWidth: '100%',
+          height: 'auto',
+        }}
         component="img"
         height="140"
         image={product.image}
@@ -68,21 +82,37 @@ export default function OneProductCard({
           <Grid item>
             <IconButton
               size="small"
-              style={{ borderRadius: '50%', border: '1px solid black' }}
+              style={{
+                borderRadius: '50%',
+                border: '1px solid black',
+                transform: 'scale(0.8)',
+              }}
               onClick={handleDecrement}
             >
               <Remove />
             </IconButton>
           </Grid>
           <Grid item>
-            <Typography align="center" sx={{ wordWrap: 'break-word' }}>
+            <Typography
+              align="center"
+              sx={{
+                wordWrap: 'break-word',
+                fontSize: 14,
+                p: 1,
+                textAlign: 'center',
+              }}
+            >
               {product.name}
             </Typography>
           </Grid>
           <Grid item>
             <IconButton
               size="small"
-              style={{ borderRadius: '50%', border: '1px solid black' }}
+              style={{
+                borderRadius: '50%',
+                border: '1px solid black',
+                transform: 'scale(0.8)',
+              }}
               onClick={handleIncrement}
             >
               <Add />

@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       weekdays: DataTypes.STRING,
       userId: DataTypes.INTEGER,
       ratingLink: DataTypes.TEXT,
+      urlName: DataTypes.TEXT,
     },
     {
       sequelize,

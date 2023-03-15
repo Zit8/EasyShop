@@ -4,10 +4,12 @@ import type { ProductType } from '../../types/productTypes';
 
 type InitSlice = {
   products: ProductType[];
+  filterProducts: ProductType[];
 };
 
 const initialState: InitSlice = {
   products: [],
+  filterProducts: [],
 };
 
 export const getProductsThunk = createAsyncThunk<
@@ -25,20 +27,21 @@ const productsSlice = createSlice({
   name: 'productsSlice',
   initialState,
   reducers: {
-    // filterProducts(state, action) {
-    //   console.log(action.payload);
-    //   state.products = state.products.filter((product) =>
-    //     product.shopId.includes(action.payload),
-    //   );
-    // },
+    productsNameInputFilter(state, action) {
+      console.log(action.payload);
+      state.filterProducts = state.products.filter((product) =>
+        product.name.includes(action.payload),
+      );
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getProductsThunk.fulfilled, (state, action) => {
       state.products = action.payload;
+      state.filterProducts = action.payload;
       console.log(state.products, 'action payload');
     });
   },
 });
 
-// export const { filterProducts } = productsSlice.actions;
+export const { productsNameInputFilter } = productsSlice.actions;
 export default productsSlice.reducer;

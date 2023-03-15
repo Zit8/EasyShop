@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,9 +10,33 @@ import { DatePicker } from '@mui/lab';
 import InputLabel from '@mui/material/InputLabel';
 
 export default function OrderForm(): JSX.Element {
+  const [orderhandlerInput, setOrderHandlerInput] = useState({
+    name: '',
+    selfDelivery: true,
+    paymentWay: true,
+    street: '',
+    city: '',
+  });
+  console.log(orderhandlerInput);
+
+  const changeHandlerInput = (
+    e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>
+  ): void => {
+    const { name, value } = e.target;
+    setOrderHandlerInput((prev) => ({
+      ...prev,
+      [name as string]: value,
+    }));
+  };
+  const { name, selfDelivery, paymentWay, street, city } = orderhandlerInput;
   return (
     <Box
-    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}
     >
       <Card
         sx={{
@@ -30,7 +54,14 @@ export default function OrderForm(): JSX.Element {
           >
             Имя пользователя
           </Typography>
-          <TextField sx={{ width: '100%' }} label="Имя" id="firstName" />
+          <TextField
+            sx={{ width: '100%' }}
+            label="Имя"
+            id="firstName"
+            name="name"
+            value={name}
+            onChange={changeHandlerInput}
+          />
           <InputLabel
             sx={{ margin: 3, fontSize: 14 }}
             id="demo-simple-select-helper-label"
@@ -38,52 +69,71 @@ export default function OrderForm(): JSX.Element {
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} sm={6}>
               <FormControl sx={{ width: '100%' }}>
-                <InputLabel sx={{ fontSize: 14 }} id="delivery-label">
+                <InputLabel sx={{ fontSize: 14 }} id="selfDelivery-label">
                   Способ доставки
                 </InputLabel>
                 <Select
-                  labelId="delivery-label"
-                  id="delivery-select"
+                  labelId="selfDelivery-label"
+                  id="selfDelivery-select"
                   label="Способ доставки"
+                  name="selfDelivery"
+                  value={selfDelivery}
+                  onChange={changeHandlerInput}
                 >
-                  <MenuItem value=""> </MenuItem>
-                  <MenuItem value={10}>Самовывоз</MenuItem>
-                  <MenuItem value={20}>Доставка</MenuItem>
+                  <MenuItem value>Самовывоз</MenuItem>
+                  <MenuItem value={false}>Доставка</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl sx={{ width: '100%' }}>
-                <InputLabel sx={{ fontSize: 12 }} id="payment-label">
+                <InputLabel sx={{ fontSize: 12 }} id="paymentWay-label">
                   Способ оплаты
                 </InputLabel>
                 <Select
-                  labelId="payment-label"
-                  id="payment-select"
+                  labelId="paymentWay-label"
+                  id="paymentWay-select"
                   label="Способ оплаты"
+                  name="paymentWay"
+                  value={paymentWay}
+                  onChange={changeHandlerInput}
                 >
-                  <MenuItem value=""> </MenuItem>
-                  <MenuItem value={10}>Карта</MenuItem>
-                  <MenuItem value={20}>Наличные</MenuItem>
+                  <MenuItem value>Карта</MenuItem>
+                  <MenuItem value={false}>Наличные</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
           </Grid>
-          <Typography
-            sx={{ fontSize: 12, margin: 3 }}
-            color="text.secondary"
-            gutterBottom
-          >
-            Адрес доставки
-          </Typography>
-          <TextField
-            sx={{ width: '100%', marginBottom: 3 }}
-            label="Улица и номер дома"
-            id="street"
-          />
-          <TextField sx={{ width: '100%' }} label="Город" id="city" />
+          {!selfDelivery && (
+            <>
+              <Typography
+                sx={{ fontSize: 12, margin: 3 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                Адрес доставки
+              </Typography>
+              <TextField
+                sx={{ width: '100%', marginBottom: 3 }}
+                label="Улица и номер дома"
+                id="street"
+                name="street"
+                value={street}
+                onChange={changeHandlerInput}
+              />
+              <TextField
+                sx={{ width: '100%' }}
+                label="Город"
+                id="city"
+                name="city"
+                value={city}
+                onChange={changeHandlerInput}
+              />
+            </>
+          )}
           <DatePicker label="Uncontrolled picker" defaultValue="2022-04-17" />
         </CardContent>
+
         <CardActions sx={{ justifyContent: 'center' }}>
           <Button size="small">Отправить</Button>
         </CardActions>

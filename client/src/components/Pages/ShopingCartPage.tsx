@@ -1,13 +1,5 @@
-import React from 'react'
-
-export default function ShopingCartPage():JSX.Element {
-  return (
-    <div>ShopingCartPage</div>
-  )
-}
-
-
 // import React from 'react';
+
 // import { makeStyles } from '@material-ui/core/styles';
 // import {
 //   Paper,
@@ -23,22 +15,24 @@ export default function ShopingCartPage():JSX.Element {
 // } from '@material-ui/core';
 // import DeleteIcon from '@material-ui/icons/Delete';
 
-// const useStyles = makeStyles((theme) => ({
-//   tableContainer: {
-//     marginTop: theme.spacing(3),
-//     marginBottom: theme.spacing(3),
-//   },
-//   total: {
-//     textAlign: 'right',
-//     marginTop: theme.spacing(2),
-//   },
-//   buttonContainer: {
-//     textAlign: 'right',
-//     marginTop: theme.spacing(2),
-//   },
-// }));
+// // export default function ShopingCartPage(): JSX.Element {
 
-// function ShoppingCartPage({ items, removeItem }):JSX.Element {
+// // const useStyles = makeStyles((theme) => ({
+// //   tableContainer: {
+// //     marginTop: theme.spacing(3),
+// //     marginBottom: theme.spacing(3),
+// //   },
+// //   total: {
+// //     textAlign: 'right',
+// //     marginTop: theme.spacing(2),
+// //   },
+// //   buttonContainer: {
+// //     textAlign: 'right',
+// //     marginTop: theme.spacing(2),
+// //   },
+// // }));
+
+// function ShoppingCartPage({ items, removeItem }): JSX.Element {
 //   const classes = useStyles();
 
 //   const getTotalPrice = (): number => {
@@ -58,7 +52,7 @@ export default function ShopingCartPage():JSX.Element {
 //             <TableCell>Price</TableCell>
 //             <TableCell>Quantity</TableCell>
 //             <TableCell>Subtotal</TableCell>
-//             <TableCell></TableCell>
+//             <TableCell />
 //           </TableRow>
 //         </TableHead>
 //         <TableBody>
@@ -67,9 +61,7 @@ export default function ShopingCartPage():JSX.Element {
 //               <TableCell>{item.name}</TableCell>
 //               <TableCell>${item.price.toFixed(2)}</TableCell>
 //               <TableCell>{item.quantity}</TableCell>
-//               <TableCell>
-//                 ${(item.price * item.quantity).toFixed(2)}
-//               </TableCell>
+//               <TableCell>${(item.price * item.quantity).toFixed(2)}</TableCell>
 //               <TableCell>
 //                 <IconButton onClick={() => removeItem(item.id)}>
 //                   <DeleteIcon />
@@ -82,7 +74,7 @@ export default function ShopingCartPage():JSX.Element {
 //               Total:
 //             </TableCell>
 //             <TableCell>${getTotalPrice().toFixed(2)}</TableCell>
-//             <TableCell></TableCell>
+//             <TableCell />
 //           </TableRow>
 //         </TableBody>
 //       </Table>

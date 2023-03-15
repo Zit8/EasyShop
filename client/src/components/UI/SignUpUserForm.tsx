@@ -42,9 +42,11 @@ export default function SignUpUserForm(): JSX.Element {
         <option value="false">Покупатель</option>
         <option value="true">Владелец</option>
       </Form.Select>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Button variant="primary" type="submit" style={{ margin: 15 }}>
+    Submit
+  </Button>
+</div>
     </Form>
   );
 }

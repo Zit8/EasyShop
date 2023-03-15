@@ -63,7 +63,11 @@ shopRouter.route("/:name/order").post(async (req, res) => {
       deliveryData,
       deliveryTime,
     });
-    await ShoppingCartItem.addProducts(products, shop.dataValues.id, shoppingCart.id);
+    await ShoppingCartItem.addProducts(
+      products,
+      shop.dataValues.id,
+      shoppingCart.id
+    );
     res.sendStatus(200);
   } catch (err) {
     console.log(err);

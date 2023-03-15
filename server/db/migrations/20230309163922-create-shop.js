@@ -48,6 +48,9 @@ module.exports = {
       ratingLink: {
         type: Sequelize.TEXT,
       },
+      urlName: {
+        type: Sequelize.TEXT,
+      },
 
       createdAt: {
         allowNull: false,
