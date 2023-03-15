@@ -37,12 +37,14 @@ export const shoppingCartSlice = createSlice({
     addItem: (state, action: PayloadAction<ProductType>) => {
       state.shoppingCart.products.push(action.payload);
     },
-    removeItem: (state, action: PayloadAction<{ id: number }>) => {
+    removeItem: (state, action: PayloadAction<ProductType['id']>) => {
       // либо так:  Product["id"]
-      state.shoppingCart.products.filter(
-        (item) => item.id !== action.payload.id,
-      );
-    },
+      state.shoppingCart.products.splice(
+        state.shoppingCart.products.findIndex(
+          (el) => el.id === action.payload,
+        ),
+        1,
+      );}
   },
 });
 
