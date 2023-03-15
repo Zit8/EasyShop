@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { OrderType } from '../../types';
+import type { CartProductType, OrderType, ProductType } from '../../types';
 
 type InitSlice = {
   shoppingCart: OrderType;
@@ -34,7 +34,7 @@ export const shoppingCartSlice = createSlice({
   name: 'shoppingCartSlice',
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<OrderType>) => {
+    addItem: (state, action: PayloadAction<ProductType>) => {
       state.shoppingCart.products.push(action.payload);
     },
     removeItem: (state, action: PayloadAction<{ id: number }>) => {
