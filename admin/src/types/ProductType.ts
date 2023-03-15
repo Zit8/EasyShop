@@ -10,5 +10,5 @@ export type ProductType = {
   shopId: number;
   userId: number;
   hidden: boolean;
-  price?: number;
+  price: number;
 };
