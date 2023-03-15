@@ -13,8 +13,7 @@ export default function ShoppingCertPage(): JSX.Element {
     (state) => state.shoppingCart.shoppingCart.products,
   );
   const shopName = useParams();
-    console.log(productsInCart);
-    
+
   useEffect(() => {
     dispatch(getShoppingCartThunk(shopName.name)).catch(() => {});
   }, []);
