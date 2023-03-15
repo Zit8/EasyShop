@@ -8,7 +8,6 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store, { persistor } from './redux/store';
 
-
 axios.defaults.baseURL = 'http://localhost:3001';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
