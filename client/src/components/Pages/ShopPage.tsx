@@ -26,15 +26,15 @@ export default function ShopPage(): JSX.Element {
   const shopName = useParams();
   
   useEffect(() => {
-    dispatch(getShopThunk(shopName.name)).catch(() => {});
-    dispatch(getProductsThunk(shopName.name)).catch(() => {});
+    dispatch(getShopThunk(shopName.urlName)).catch(() => {});
+    dispatch(getProductsThunk(shopName.urlName)).catch(() => {});
   }, []);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput(e.target.value);
     dispatch(productsNameInputFilter(e.target.value));
     if (input.length === 0) {
-      dispatch(getProductsThunk(shopName.name)).catch(() => {});
+      dispatch(getProductsThunk(shopName.urlName)).catch(() => {});
     }
   };
 
