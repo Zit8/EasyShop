@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import {
   AppBar,
   Box,
@@ -81,6 +81,8 @@ const styles = {
 };
 
 export default function AppNavbar(): JSX.Element {
+  const shopName = useParams();
+  console.log(shopName)
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = (): void => {
@@ -124,7 +126,7 @@ const shop = useAppSelector((state)=> state.shop)
                 sx={{ width: '240px' }}
               >
                 <List sx={styles.list}>
-                  <Link href="/:name/contacts" sx={styles.listItem} >
+                  <Link href={`/shop/${shop.shop.name}/description`} sx={styles.listItem} >
                     О КОМПАНИИ
                   </Link>
                   <Link href="/:name/contacts" sx={styles.listItem}>
