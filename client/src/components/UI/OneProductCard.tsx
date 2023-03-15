@@ -23,10 +23,17 @@ export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
   const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
+  const shop = useAppSelector((state) => state.shop);
+  const products = useAppSelector((state) => state.products);
+  console.log(products, '<<<<<<');
 
-  const handleOrder = (): void => {
-    // Handle order button click
-  };
+  console.log(shop, 'SHOOOOP');
+
+  const shopName = useParams();
+  console.log(shopName, '<<<<<<<<<<');
+
+  const handleOrder = (): void => {};
 
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
@@ -71,14 +78,17 @@ export default function OneProductCard({
           alignItems="center"
         >
           <Grid item>
-          <IconButton
-  size="small"
-  style={{ borderRadius: '50%', border: '1px solid black', transform: 'scale(0.8)' }}
-  onClick={handleDecrement}
->
-  <Remove />
-</IconButton>
-
+            <IconButton
+              size="small"
+              style={{
+                borderRadius: '50%',
+                border: '1px solid black',
+                transform: 'scale(0.8)',
+              }}
+              onClick={handleDecrement}
+            >
+              <Remove />
+            </IconButton>
           </Grid>
           <Grid item>
             <Typography
@@ -96,7 +106,11 @@ export default function OneProductCard({
           <Grid item>
             <IconButton
               size="small"
-              style={{ borderRadius: '50%', border: '1px solid black',transform: 'scale(0.8)' }}
+              style={{
+                borderRadius: '50%',
+                border: '1px solid black',
+                transform: 'scale(0.8)',
+              }}
               onClick={handleIncrement}
             >
               <Add />

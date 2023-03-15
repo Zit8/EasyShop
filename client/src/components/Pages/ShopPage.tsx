@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import { Input } from 'antd';
 import { getShopThunk } from '../../features/Slices/shopSlice';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
-import { getProductsThunk } from '../../features/Slices/productsSlice';
+import { getProductsThunk, productsNameInputFilter } from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
 import { ProductType } from '../../types';
 // import { SearchOutlined } from '@ant-design/icons';
