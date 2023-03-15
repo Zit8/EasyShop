@@ -42,7 +42,6 @@ const productsSlice = createSlice({
     builder.addCase(getProductsThunk.fulfilled, (state, action) => {
       state.products = action.payload;
       state.filterProducts = action.payload;
-      console.log(state.products, 'action payload');
     });
   },
 });

@@ -12,17 +12,11 @@ import {
   productsNameCategoryFilter,
 } from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
-import { ProductType, SubCategoryType } from '../../types';
-// import { SearchOutlined } from '@ant-design/icons';
-
-// type ProductsProps = {
-//   products: ProductType[];
-// };
+import OneCategory from '../UI/OneCategory';
 
 export default function ShopPage(): JSX.Element {
   const [input, setInput] = useState('');
   const dispatch = useAppDispatch();
-  const shop = useAppSelector((state) => state.shop);
   const products = useAppSelector((state) => state.products.filterProducts);
   const productsConst = useAppSelector((state) => state.products.products);
   const shopName = useParams();
@@ -78,14 +72,10 @@ export default function ShopPage(): JSX.Element {
           {Array.from(
             new Set(productsConst.map((product) => product.SubCategory.name)),
           ).map((subcategoryName) => (
-            <Col
-              mt={5}
-              onmouseover={{ color: 'blue' }}
-              onClick={() => handlerCategory(subcategoryName)}
-              key={subcategoryName}
-            >
-              {subcategoryName}
-            </Col>
+            <OneCategory
+              subcategoryName={subcategoryName}
+              handlerCategory={handlerCategory}
+            />
           ))}
         </Col>
         <Row lg="2" style={{ width: '80%' }}>

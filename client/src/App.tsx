@@ -28,7 +28,6 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
-        {/* <Route path="/:name" element={<ShopPage />} /> */}
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         <Route path="/shop/:name/description" element={<DescriptionPage />} />
