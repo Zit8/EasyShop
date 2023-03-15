@@ -13,7 +13,9 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Add, Remove } from '@mui/icons-material';
+import { useParams } from 'react-router-dom';
 import type { ProductType } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 
 type OneProductCardProps = {
   product: ProductType;
