@@ -53,7 +53,7 @@ const styles = {
     fontSize: '24px',
     fontWeight: 'bold',
     marginLeft: '10px',
-    color: 'black'
+    color: 'black',
   },
   drawer: {
     width: '240px',
@@ -90,8 +90,8 @@ export default function AppNavbar(): JSX.Element {
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
-const dispatch = useAppDispatch();
-const shop = useAppSelector((state)=> state.shop)
+  const dispatch = useAppDispatch();
+  const shop = useAppSelector((state) => state.shop);
 
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
@@ -124,7 +124,10 @@ const shop = useAppSelector((state)=> state.shop)
                 sx={{ width: '240px' }}
               >
                 <List sx={styles.list}>
-                  <Link href={`/shop/${shop.shop.name}/description`} sx={styles.listItem} >
+                  <Link
+                    href={`/shop/${shop.shop.name}/description`}
+                    sx={styles.listItem}
+                  >
                     О КОМПАНИИ
                   </Link>
                   <Link href="/:name/contacts" sx={styles.listItem}>

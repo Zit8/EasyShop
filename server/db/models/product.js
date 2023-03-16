@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       image: DataTypes.TEXT,
       number: DataTypes.INTEGER,
+      orderCount: DataTypes.INTEGER,
       unit: DataTypes.TEXT,
       subcategoryId: DataTypes.INTEGER,
       delivered: DataTypes.BOOLEAN,
