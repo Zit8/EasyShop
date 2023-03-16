@@ -7,7 +7,6 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import { makeStyles } from '@mui/material/styles';
 import { TimePicker } from '@mui/lab';
 
 const daysOfWeek = [
@@ -25,7 +24,6 @@ type FormData = {
 };
 
 export default function SignUpAdminForm(): JSX.Element {
-  const classes = useStyles();
   const [formData, setFormData] = useState<FormData>({ weekdays: '' });
 
   // const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
