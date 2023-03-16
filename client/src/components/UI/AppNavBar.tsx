@@ -82,16 +82,14 @@ const styles = {
 };
 
 export default function AppNavbar(): JSX.Element {
-  const shopName = useParams();
+  
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = (): void => {
     setOpen(true);
   };
-console.log(shopName)
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
-  const dispatch = useAppDispatch();
   const shop = useAppSelector((state) => state.shop);
 
   // const userData = useAppSelector((state) => state.userData);
@@ -101,10 +99,7 @@ console.log(shopName)
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
   
-  useEffect(() => {
-    dispatch(getShopThunk()).catch(() => null);
-  }, []);
-
+  
   return (
     <AppBar position="static" style={styles.appBar}>
       <Container maxWidth={false} style={{ paddingLeft: 0, paddingRight: 0 }}>

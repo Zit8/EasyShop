@@ -68,6 +68,19 @@ export default function OneProductCard({
           justifyContent="space-between"
           alignItems="center"
         >
+           <Grid item>
+            <Typography
+              align="center"
+              sx={{
+                wordWrap: 'break-word',
+                fontSize: 14,
+                p: 1,
+                textAlign: 'center',
+              }}
+            >
+              {product.name}
+            </Typography>
+          </Grid>
           <Grid item>
             <IconButton
               size="small"
@@ -80,19 +93,6 @@ export default function OneProductCard({
             >
               <Remove />
             </IconButton>
-          </Grid>
-          <Grid item>
-            <Typography
-              align="center"
-              sx={{
-                wordWrap: 'break-word',
-                fontSize: 14,
-                p: 1,
-                textAlign: 'center',
-              }}
-            >
-              {product.name}
-            </Typography>
           </Grid>
           <Grid item>
             <IconButton
