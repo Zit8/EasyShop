@@ -19,5 +19,14 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "SubCategory",
     }
   );
+
+    SubCategory.deleteMany = async function (subCategoriesId) {
+      const ids = [];
+      subCategoriesId.forEach(async (id) => {
+        ids.push(id);
+        await SubCategory.destroy({ where: { id } });
+      });
+      return ids;
+    };
   return SubCategory;
 };
