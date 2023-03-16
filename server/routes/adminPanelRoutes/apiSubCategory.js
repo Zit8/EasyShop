@@ -1,18 +1,18 @@
 const express = require("express");
 const upload = require("../../middleware/upload");
-const { Product } = require("../../db/models");
+const { SubCategory } = require("../../db/models");
 
-const productRouter = express.Router();
+const subCategoryRouter = express.Router();
 
-productRouter
+subCategoryRouter
   .route("/")
   .get(async (req, res) => {
     // getList{ data: {Record[]}, total: {int} }
     try {
-      const allProducts = await Product.findAll({
+      const allSubCategory = await SubCategory.findAll({
         order: [["createdAt", "DESC"]],
       });
-      res.json({ data: allProducts, total: allProducts.length });
+      res.json({ data: allSubCategory, total: allSubCategory.length });
     } catch (err) {
       console.log(err);
       res.sendStatus(500);
@@ -30,7 +30,7 @@ productRouter
     }
   });
 
-productRouter
+subCategoryRouter
   .route("/many")
   .patch(async (req, res) => {
     // updateMany
@@ -47,7 +47,7 @@ productRouter
     res.json({ data: await Product.deleteMany(req.body) });
   });
 
-productRouter
+subCategoryRouter
   .route("/:id")
   .get(async (req, res) => {
     // getOne
@@ -84,4 +84,4 @@ productRouter
     }
   });
 
-module.exports = productRouter;
+module.exports = subCategoryRouter;

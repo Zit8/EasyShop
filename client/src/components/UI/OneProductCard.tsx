@@ -70,21 +70,21 @@ export default function OneProductCard({
           spacing={3}
           justifyContent="space-between"
           alignItems="center"
-        >
-           <Grid item>
-            <Typography
-              align="center"
-              sx={{
-                wordWrap: 'break-word',
-                fontSize: 14,
-                p: 1,
-                textAlign: 'center',
-              }}
-            >
-              {product.name}
-            </Typography>
-          </Grid>
-          <Grid item>
+        <Grid item xs={12}>
+          <Typography
+            align="center"
+            sx={{
+              wordWrap: 'break-word',
+              fontSize: 14,
+              p: 1,
+              textAlign: 'center',
+            }}
+          >
+            {product.name}
+          </Typography>
+        </Grid>
+        <Grid item sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Grid item sx={{ marginRight: 1 }}>
             <IconButton
               size="small"
               style={{
