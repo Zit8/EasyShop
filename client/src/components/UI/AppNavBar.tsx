@@ -16,12 +16,13 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { logouUserActionThunk } from '../../features/actions';
 import '@fontsource/inter';
+import { getShopThunk } from '../../features/Slices/shopSlice';
 
 const styles = {
   appBar: {
@@ -99,6 +100,10 @@ export default function AppNavbar(): JSX.Element {
   // const logoutHandler = (): void => {
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
+  
+  useEffect(() => {
+    dispatch(getShopThunk()).catch(() => null);
+  }, []);
 
   return (
     <AppBar position="static" style={styles.appBar}>
