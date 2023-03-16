@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
@@ -9,6 +8,7 @@ import ShoppingCartItem from '../UI/ShoppingCartItem';
 
 export default function ShoppingCertPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const totalPrice = useAppSelector((state) => state.shoppingCart.totalPrice)
   const productsInCart = useAppSelector(
     (state) => state.shoppingCart.shoppingCart.products,
   );
@@ -20,6 +20,7 @@ export default function ShoppingCertPage(): JSX.Element {
 
   return (
     <Container>
+      <div>Итого: {totalPrice}</div>
       <Row className="d-flex justify-content-center md-5">
         {productsInCart.map((cartItem) => (
           <ShoppingCartItem key={cartItem.id} cartItem={cartItem} />

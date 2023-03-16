@@ -75,7 +75,7 @@ shopRouter.route("/:urlName").get(async (req, res) => {
       where: { urlName: req.params.urlName },
     });
     console.log(oneShop, "===========");
-
+    if (!oneShop) return res.end()
     return res.json(oneShop.dataValues);
   } catch (err) {
     console.log(err);
