@@ -17,43 +17,57 @@ const normalizeUrlName = (name) =>
     .trim()
     .replace(/[^a-zA-Z0-9]+/g, "");
 
-shopRouter.route("/").post(upload.single("logo"), async (req, res) => {
-  try {
-    const {
-      name,
-      description,
-      logo,
-      city,
-      address,
-      phone,
-      email,
-      startTime,
-      finishingTime,
-      weekdays,
-      userId,
-      ratingLink,
-    } = req.body;
-    await Shop.create({
-      name,
-      description,
-      logo,
-      city,
-      address,
-      phone,
-      email,
-      startTime,
-      finishingTime,
-      weekdays,
-      userId,
-      ratingLink,
-      urlName: normalizeUrlName(name),
-    });
-    res.sendStatus(200);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-});
+shopRouter
+  .route("/")
+  .post(upload.single("logo"), async (req, res) => {
+    try {
+      const {
+        name,
+        description,
+        logo,
+        city,
+        address,
+        phone,
+        email,
+        startTime,
+        finishingTime,
+        weekdays,
+        userId,
+        ratingLink,
+      } = req.body;
+      await Shop.create({
+        name,
+        description,
+        logo,
+        city,
+        address,
+        phone,
+        email,
+        startTime,
+        finishingTime,
+        weekdays,
+        userId,
+        ratingLink,
+        urlName: normalizeUrlName(name),
+      });
+      console.log(normalizeUrlName(name));
+      res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  })
+  .get(async (req, res) => {
+    try {
+      const allShops = await Shop.findAll({
+        order: [["createdAt", "DESC"]],
+      });
+      res.json({ data: allShops, total: allShops.length });
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  });
 
 shopRouter.route("/:urlName").get(async (req, res) => {
   try {
