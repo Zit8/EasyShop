@@ -26,7 +26,7 @@ export default function DescriptionPage(): JSX.Element {
   };
 
   useEffect(() => {
-    dispatch(getShopThunk(shopName.name)).catch(() => {});
+    dispatch(getShopThunk(shopName.urlName)).catch(() => {});
   }, []);
   const data = shop.shop.ratingLink;
   console.log(data)
