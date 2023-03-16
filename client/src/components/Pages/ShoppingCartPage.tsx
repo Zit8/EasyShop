@@ -21,13 +21,14 @@ export default function ShoppingCertPage(): JSX.Element {
 
   return (
     <Container>
-      <div>Итого: {totalPrice}</div>
+      
       <Row className="d-flex justify-content-center md-5">
         {productsInCart.map((cartItem) => (
           <ShoppingCartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </Row>
-      <Button href='/orderform'>Оформить заказ</Button>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}><h3>Итого: {totalPrice} руб</h3></div>
+      <Button style={{display:'flex', justifyContent:'center', alignItems:'center'}} href='/orderform'>Оформить заказ</Button>
     </Container>
   );
 }

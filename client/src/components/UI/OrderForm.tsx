@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Suggestions from 'react-dadata-suggestions';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import { MenuItem, Select, TextField, Grid, FormControl } from '@mui/material';
 import { DatePicker } from '@mui/lab';
 import InputLabel from '@mui/material/InputLabel';
-import Suggestions from 'react-dadata-suggestions';
 import { useAppSelector } from '../../features/reduxHooks';
 
 export type OrderhandlerInputType = {
@@ -144,16 +144,18 @@ export default function OrderForm(): JSX.Element {
                 onChange={changeHandlerInput}
               />
               <TextField
-                id="addressId"
-                name="address"
-                placeholder="Адрес"
+              sx={{ width: '100%' }}
+                id="city"
+                label="Город Улица и номер дома"
+                name="city"
+                value={city}
                 type="text"
                 multiline
                 rows={4}
                 InputProps={{
                   inputComponent: Suggestions,
                   inputProps: {
-                    token: 'API',
+                    token: 'b4982f47bcfebdaa08b5a2ae11fdd4939c42d302',
                     filterFromBound: 'city',
                     constraints: {
                       locations: [{ city: 'Москва' }],
@@ -169,7 +171,7 @@ export default function OrderForm(): JSX.Element {
             color="text.secondary"
             gutterBottom
           >
-            Итоговая сумма для платежа: {totalCount}
+            Итоговая сумма: {totalCount} руб
           </Typography>
           <DatePicker label="Uncontrolled picker" defaultValue="2022-04-17" />
         </CardContent>
