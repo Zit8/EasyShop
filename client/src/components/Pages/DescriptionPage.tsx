@@ -57,7 +57,7 @@ export default function DescriptionPage(): JSX.Element {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <p style={styles.p}>Рейтинг:</p>
-            <div dangerouslySetInnerHTML={{__html: shop.shop.ratingLink}}/> 
+            {/* <div dangerouslySetInnerHTML={{__html: shop.shop.ratingLink}}/>  */}
           </Typography>
         </CardContent>
       </Card>
