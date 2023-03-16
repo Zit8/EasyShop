@@ -71,6 +71,17 @@ export default function ShoppingCartItem({ cartItem }: PropsType): JSX.Element {
             >
               {cartItem.name}
             </Typography>
+            <Typography
+              align="center"
+              sx={{
+                wordWrap: 'break-word',
+                fontSize: 14,
+                p: 1,
+                textAlign: 'center',
+              }}
+            >
+              {cartItem.price}
+            </Typography>
           </Grid>
           <Grid item />
         </Grid>

@@ -15,6 +15,7 @@ import { Add, Remove } from '@mui/icons-material';
 import type { ProductType } from '../../types';
 import { useAppDispatch } from '../../features/reduxHooks';
 import { addItem } from '../../features/Slices/shoppingCartSlice';
+import { productCountDecrement, productCountIncrement } from '../../features/Slices/productsSlice';
 
 type OneProductCardProps = {
   product: ProductType;
@@ -24,12 +25,14 @@ export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(product.orderCount);
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
+    dispatch(productCountIncrement(product.id))
   };
   const handleDecrement = (): void => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+    dispatch(productCountDecrement(product.id))
   };
   const handleOrder = (): void => {
     dispatch(addItem(product));

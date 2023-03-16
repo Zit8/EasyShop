@@ -8,6 +8,7 @@ import ShoppingCartItem from '../UI/ShoppingCartItem';
 
 export default function ShoppingCertPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const totalPrice = useAppSelector((state) => state.shoppingCart.totalPrice)
   const productsInCart = useAppSelector(
     (state) => state.shoppingCart.shoppingCart.products,
   );
@@ -19,6 +20,7 @@ export default function ShoppingCertPage(): JSX.Element {
 
   return (
     <Container>
+      <div>Итого: {totalPrice}</div>
       <Row className="d-flex justify-content-center md-5">
         {productsInCart.map((cartItem) => (
           <ShoppingCartItem key={cartItem.id} cartItem={cartItem} />

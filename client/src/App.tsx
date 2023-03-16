@@ -12,7 +12,7 @@ import MainPage from './MainPage';
 import OrderForm from './components/UI/OrderForm';
 import ShopingCartPage from './components/Pages/ShoppingCartPage';
 import DescriptionPage from './components/Pages/DescriptionPage';
-import PrivateRouter from './components/HOC/PrivateRouter';
+
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -27,9 +27,9 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<MainPage />} />
         {/* <Route path="/auth/:type" element={<AuthPage />} /> */}
-        <Route element ={<PrivateRouter isAllowed={!(status === 'logged')} redirectTo="/"/> }>
+        {/* <Route element ={<PrivateRouter isAllowed={!(status === 'logged')} redirectTo="/"/> }>
           <Route path="/auth/:type" element={<AuthPage />} />
-        </Route>
+        </Route> */}
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         <Route

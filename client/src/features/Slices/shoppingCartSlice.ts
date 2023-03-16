@@ -5,6 +5,7 @@ import type { CartProductType, OrderType, ProductType } from '../../types';
 
 type InitSlice = {
   shoppingCart: OrderType;
+  totalPrice: number;
 };
 
 const initialState: InitSlice = {
@@ -16,6 +17,7 @@ const initialState: InitSlice = {
     deliveryData: '',
     deliveryTime: '',
   },
+  totalPrice: 0,
 };
 
 export const getShoppingCartThunk = createAsyncThunk<
@@ -36,15 +38,16 @@ export const shoppingCartSlice = createSlice({
   reducers: {
     addItem: (state, action: PayloadAction<ProductType>) => {
       state.shoppingCart.products.push(action.payload);
+      state.totalPrice += action.payload.price;
     },
     removeItem: (state, action: PayloadAction<ProductType['id']>) => {
       // либо так:  Product["id"]
       state.shoppingCart.products.splice(
-        state.shoppingCart.products.findIndex(
-          (el) => el.id === action.payload,
-        ),
+        state.shoppingCart.products.findIndex((el) => el.id === action.payload),
         1,
-      );}
+      );
+      state.totalPrice -= state.shoppingCart.products[action.payload].price;
+    },
   },
 });
 

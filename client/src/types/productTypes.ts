@@ -1,5 +1,6 @@
 export type ProductType = {
   id?: number;
+  orderCount: number;
   name: string;
   description: string;
   image?: string;

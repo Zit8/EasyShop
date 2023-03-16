@@ -100,7 +100,7 @@ export default function AppNavbar(): JSX.Element {
   // const logoutHandler = (): void => {
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
-  
+  const isAuthenticated = useAppSelector((state) => state.userData.user)
   
   return (
     <AppBar position="static" style={styles.appBar}>
@@ -139,7 +139,6 @@ export default function AppNavbar(): JSX.Element {
               </Drawer>
             </Grid>
             <Grid item>
-              
               <Box style={styles.logo}>
               {shopName ? (<Typography variant="h6" color="inherit">
                   <img

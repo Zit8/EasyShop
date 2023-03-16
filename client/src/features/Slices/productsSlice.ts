@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import type { ProductType } from '../../types/productTypes';
@@ -33,9 +34,16 @@ const productsSlice = createSlice({
       );
     },
     productsNameCategoryFilter(state, action) {
-      state.filterProducts = state.products.filter((product) =>
-        product.SubCategory.name === action.payload,
+      state.filterProducts = state.products.filter(
+        (product) => product.SubCategory.name === action.payload,
       );
+    },
+    productCountIncrement(state, action: PayloadAction<ProductType['id']>) {
+        state.products[action.payload].orderCount += 1;
+          
+    },
+    productCountDecrement(state, action: PayloadAction<ProductType['id']>) {
+        state.products[action.payload].orderCount -= 1;
     },
   },
   extraReducers: (builder) => {
@@ -46,5 +54,10 @@ const productsSlice = createSlice({
   },
 });
 
-export const { productsNameInputFilter,productsNameCategoryFilter } = productsSlice.actions;
+export const {
+  productsNameInputFilter,
+  productsNameCategoryFilter,
+  productCountIncrement,
+  productCountDecrement
+} = productsSlice.actions;
 export default productsSlice.reducer;
