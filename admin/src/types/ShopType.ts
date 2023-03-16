@@ -1,5 +1,5 @@
 export type ShopType = {
-  id?: number | undefined;
+  id: number;
   name: string;
   description: string;
   logo: string;
@@ -10,7 +10,7 @@ export type ShopType = {
   startTime: string;
   finishingTime: string;
   weekdays: string;
-  userId?: number | undefined;
-  ratingLink?: string;
+  userId: number;
+  ratingLink: string;
   urlName: string;
 };

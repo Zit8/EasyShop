@@ -15,6 +15,10 @@ import ContactPage from './components/Pages/DescriptionPage';
 import DescriptionPage from './components/Pages/DescriptionPage';
 import AuthAdminPage from './components/Pages/AuthAdminPage';
 import ContactsPage from './components/Pages/ContactsPage';
+import MainePage from './components/Pages/MainePage';
+import SignInAdminForm from './components/UI/SignInAdminForm';
+import SignUpUserForm from './components/UI/SignUpUserForm';
+//import SignUpAdminForm from './components/UI/SignUpAdminForm';
 //import AdminPanel from './admin/Admin';
 
 function App(): JSX.Element {
@@ -27,17 +31,19 @@ function App(): JSX.Element {
     <Container>
       <AppNavBar />
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<MainePage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
         <Route path="/authadmin/:type" element={<AuthAdminPage />} />
-        {/* <Route path="/:name" element={<ShopPage />} /> */}
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
+        <Route path="/registration" element={<SignUpUserForm />} />
+
         <Route
           path="/shop/:urlName/description"
           element={<DescriptionPage />}
         />
         <Route path="/shop/:urlName" element={<ShopPage />} />
+        {/* <Route path="/registration" element={<SignUpAdminForm />} /> */}
       </Routes>
     </Container>
   );

@@ -24,6 +24,8 @@ module.exports = {
   },
   root: true,
   rules: {
+    "consistent-return": 0,
+    "no-case-declarations": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/no-unsafe-argument": 0,
     "@typescript-eslint/no-unsafe-member-access": 0,
