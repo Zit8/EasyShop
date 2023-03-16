@@ -16,12 +16,13 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { logouUserActionThunk } from '../../features/actions';
 import '@fontsource/inter';
+import { getShopThunk } from '../../features/Slices/shopSlice';
 
 const styles = {
   appBar: {
@@ -53,7 +54,7 @@ const styles = {
     fontSize: '24px',
     fontWeight: 'bold',
     marginLeft: '10px',
-    color: 'black'
+    color: 'black',
   },
   drawer: {
     width: '240px',
@@ -90,15 +91,19 @@ export default function AppNavbar(): JSX.Element {
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
-const dispatch = useAppDispatch();
-const shop = useAppSelector((state)=> state.shop)
-
+  const dispatch = useAppDispatch();
+  const shop = useAppSelector((state) => state.shop);
+ 
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
 
   // const logoutHandler = (): void => {
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
+  
+  useEffect(() => {
+    dispatch(getShopThunk()).catch(() => null);
+  }, []);
 
   return (
     <AppBar position="static" style={styles.appBar}>
@@ -124,7 +129,10 @@ const shop = useAppSelector((state)=> state.shop)
                 sx={{ width: '240px' }}
               >
                 <List sx={styles.list}>
-                  <Link href={`/shop/${shop.shop.name}/description`} sx={styles.listItem} >
+                  <Link
+                    href={`/shop/${shop.shop.name}/description`}
+                    sx={styles.listItem}
+                  >
                     О КОМПАНИИ
                   </Link>
                   <Link href="/:name/contacts" sx={styles.listItem}>
