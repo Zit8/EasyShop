@@ -7,7 +7,9 @@ const authRouter = require("./routes/authRouter");
 const shopRouter = require("./routes/shopRouter");
 const apiProductRouter = require("./routes/adminPanelRoutes/apiProducts");
 const apiCategoriesRouter = require("./routes/adminPanelRoutes/apiCategories");
+const userRouter = require("./routes/adminPanelRoutes/apiUsers");
 const apiOrderRouter = require("./routes/adminPanelRoutes/apiOrders");
+const apiSubCategoryRouter = require("./routes/adminPanelRoutes/apiSubCategory")
 
 require("dotenv").config();
 
@@ -40,6 +42,8 @@ app.use("/shop", shopRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/products", apiProductRouter);
 app.use("/api/categories", apiCategoriesRouter);
+app.use("/api/users", userRouter);
 app.use("/api/orders", apiOrderRouter);
+app.use("/api/subcategories", apiSubCategoryRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

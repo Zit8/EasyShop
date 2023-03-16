@@ -3,6 +3,9 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { DataProvider } from "react-admin";
 import type { CategoryType, ProductType } from "../types";
+import type { ShopType } from "../types/ShopType";
+import type { SubCategoryType } from "../types/SubCategoryType";
+import type { UserType } from "../types/UserType";
 
 type IdType = {
   id: number;
@@ -13,6 +16,24 @@ type UpdateType = {
   data: CategoryType | ProductType;
 };
 
+const getListSubCategories: () => Promise<SubCategoryType[]> = async () => {
+  const { data }: AxiosResponse<SubCategoryType[]> = await axios(
+    "http://localhost:3001/api/subcategories"
+  );
+  return data;
+};
+const getListShops: () => Promise<ShopType[]> = async () => {
+  const { data }: AxiosResponse<ShopType[]> = await axios(
+    "http://localhost:3001/shop"
+  );
+  return data;
+};
+const getListUsers: () => Promise<UserType[]> = async () => {
+  const { data }: AxiosResponse<UserType[]> = await axios(
+    "http://localhost:3001/api/users"
+  );
+  return data;
+};
 const getListProducts: () => Promise<ProductType[]> = async () => {
   const { data }: AxiosResponse<ProductType[]> = await axios(
     "http://localhost:3001/api/products"
@@ -91,14 +112,13 @@ const updateOneCategory: (data: CategoryType) => Promise<CategoryType> = async (
     console.log(error);
   }
 };
-const updateManyProducts: (data: UpdateType) => Promise<[number]> = async (data) => {
+const updateManyProducts: (data: UpdateType) => Promise<[number]> = async (
+  data
+) => {
   try {
-    const res = await axios.put(
-      `http://localhost:3001/api/products/many`,
-      {
-        data,
-      }
-    );
+    const res = await axios.put(`http://localhost:3001/api/products/many`, {
+      data,
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -120,11 +140,16 @@ const updateManyCategories: (data: UpdateType) => Promise<[number]> = async (
 const dataApiProvider: DataProvider = {
   getList: async (resource: string) => {
     switch (resource) {
+      case "subcategories":
+        return getListSubCategories();
+      case "shops":
+        return getListShops();
+      case "users":
+        return getListUsers();
       case "products":
-        await getListProducts();
-        break;
+        return getListProducts();
       case "categories":
-        await getListCategories();
+        return getListCategories();
         break;
       default:
         break;
@@ -133,10 +158,10 @@ const dataApiProvider: DataProvider = {
   getOne: async (resource: string, id: IdType) => {
     switch (resource) {
       case "products":
-        await getOneProduct(id);
+        return getOneProduct(id);
         break;
       case "categories":
-        await getOneCategory(id);
+        return getOneCategory(id);
         break;
       default:
         break;
@@ -145,11 +170,9 @@ const dataApiProvider: DataProvider = {
   create: async (resource: string, params: any) => {
     switch (resource) {
       case "products":
-        createOneProduct(params.data);
-        break;
+        return createOneProduct(params.data);
       case "categories":
-        createOneCategory(params.data);
-        break;
+        return createOneCategory(params.data);
       default:
         break;
     }
@@ -157,11 +180,9 @@ const dataApiProvider: DataProvider = {
   update: async (resource: string, params: any) => {
     switch (resource) {
       case "products":
-        updateOneProduct(params.data);
-        break;
+        return updateOneProduct(params.data);
       case "categories":
-        updateOneCategory(params.data);
-        break;
+        return updateOneCategory(params.data);
       default:
         break;
     }
@@ -169,11 +190,9 @@ const dataApiProvider: DataProvider = {
   updateMany: async (resource: string, params: any) => {
     switch (resource) {
       case "products":
-        updateManyProducts(params.data);
-        break;
+        return updateManyProducts(params.data);
       case "categories":
-        updateManyCategories(params.data);
-        break;
+        return updateManyCategories(params.data);
       default:
         break;
     }
