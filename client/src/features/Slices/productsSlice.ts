@@ -39,11 +39,33 @@ const productsSlice = createSlice({
       );
     },
     productCountIncrement(state, action: PayloadAction<ProductType['id']>) {
-        state.products[action.payload].orderCount += 1;
-          
+      return {
+        ...state,
+        products: state.products.map((product) => {
+          if (product.id === action.payload)
+            return {
+              ...product,
+              orderCount: product.orderCount + 1,
+              number: product.number - 1,
+            };
+          return product;
+        }),
+      };
     },
+    
     productCountDecrement(state, action: PayloadAction<ProductType['id']>) {
-        state.products[action.payload].orderCount -= 1;
+      return {
+        ...state,
+        products: state.products.map((product) => {
+          if (product.id === action.payload)
+            return {
+              ...product,
+              orderCount: product.orderCount - 1,
+              number: product?.number + 1,
+            };
+          return product;
+        }),
+      };
     },
   },
   extraReducers: (builder) => {
@@ -58,6 +80,6 @@ export const {
   productsNameInputFilter,
   productsNameCategoryFilter,
   productCountIncrement,
-  productCountDecrement
+  productCountDecrement,
 } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import { MenuItem, Select, TextField, Grid, FormControl } from '@mui/material';
 import { DatePicker } from '@mui/lab';
 import InputLabel from '@mui/material/InputLabel';
+import Suggestions from 'react-dadata-suggestions';
+import { useAppSelector } from '../../features/reduxHooks';
 
 export type OrderhandlerInputType = {
   name: string;
@@ -18,11 +20,12 @@ export type OrderhandlerInputType = {
 };
 
 export default function OrderForm(): JSX.Element {
+  const totalCount = useAppSelector((state) => state.shoppingCart.totalPrice);
   const [orderhandlerInput, setOrderHandlerInput] =
     useState<OrderhandlerInputType>({
       name: '',
       selfDelivery: true,
-      paymentWay: true,
+      paymentWay: !true,
       street: '',
       city: '',
     });
@@ -32,7 +35,7 @@ export default function OrderForm(): JSX.Element {
       name?: string | boolean | undefined;
       value: unknown;
     }>,
-  ):void => {
+  ): void => {
     const { name, value } = e.target;
     setOrderHandlerInput((prev) => ({
       ...prev,
@@ -140,13 +143,43 @@ export default function OrderForm(): JSX.Element {
                 value={city}
                 onChange={changeHandlerInput}
               />
+              <TextField
+                id="addressId"
+                name="address"
+                placeholder="Адрес"
+                type="text"
+                multiline
+                rows={4}
+                InputProps={{
+                  inputComponent: Suggestions,
+                  inputProps: {
+                    token: 'API',
+                    filterFromBound: 'city',
+                    constraints: {
+                      locations: [{ city: 'Москва' }],
+                      house: true,
+                    },
+                  },
+                }}
+              />
             </>
           )}
+          <Typography
+            sx={{ fontSize: 14, margin: 3 }}
+            color="text.secondary"
+            gutterBottom
+          >
+            Итоговая сумма для платежа: {totalCount}
+          </Typography>
           <DatePicker label="Uncontrolled picker" defaultValue="2022-04-17" />
         </CardContent>
 
         <CardActions sx={{ justifyContent: 'center' }}>
-          <Button  size="small">Отправить</Button>
+          {orderhandlerInput.paymentWay && (
+            <Button href="https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=bblovecake&amp;InvoiceID=0&amp;Culture=ru&amp;Encoding=utf-8&amp;OutSum=1500&amp;shp_interface=but&amp;SignatureValue=662d6d87ad0e7d9548ab8ba0ac34f046">
+              ОПЛАТИТЬ
+            </Button>
+          )}
         </CardActions>
       </Card>
     </Box>
