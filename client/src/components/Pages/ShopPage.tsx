@@ -13,7 +13,7 @@ import {
 } from '../../features/Slices/productsSlice';
 import OneProductCard from '../UI/OneProductCard';
 import OneCategory from '../UI/OneCategory';
-//test
+
 export default function ShopPage(): JSX.Element {
   const [input, setInput] = useState('');
   const dispatch = useAppDispatch();
