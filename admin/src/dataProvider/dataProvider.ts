@@ -3,6 +3,7 @@ import type { AxiosResponse } from "axios";
 import axios from "axios";
 import type { DataProvider } from "react-admin";
 import type { CategoryType, ProductType } from "../types";
+import type { OrderType } from "../types/OrderType";
 import type { ShopType } from "../types/ShopType";
 import type { SubCategoryType } from "../types/SubCategoryType";
 import type { UserType } from "../types/UserType";
@@ -16,6 +17,14 @@ type UpdateType = {
   data: CategoryType | ProductType;
 };
 
+const getListOrders: () => Promise<OrderType[]> = async () => {
+  const { data }: AxiosResponse<OrderType[]> = await axios(
+    "http://localhost:3001/api/orders"
+  );
+  console.log(data);
+  
+  return data;
+};
 const getListSubCategories: () => Promise<SubCategoryType[]> = async () => {
   const { data }: AxiosResponse<SubCategoryType[]> = await axios(
     "http://localhost:3001/api/subcategories"
@@ -62,6 +71,7 @@ const createOneProduct: (data: ProductType) => Promise<ProductType> = async (
   data
 ) => {
   try {
+    console.log(data);
     const res = await axios.post("http://localhost:3001/api/products", {
       data,
     });
@@ -140,6 +150,8 @@ const updateManyCategories: (data: UpdateType) => Promise<[number]> = async (
 const dataApiProvider: DataProvider = {
   getList: async (resource: string) => {
     switch (resource) {
+      case "orders":
+        return getListOrders();
       case "subcategories":
         return getListSubCategories();
       case "shops":

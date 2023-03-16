@@ -28,7 +28,7 @@ const initialState: InitSlice = {
 
 export const getShopThunk = createAsyncThunk<ShopType, string | undefined>(
   'shop/fetch',
-  async (name) =>
+  async (name: string | undefined) =>
     axios<ShopType>(`/shop/${name}`)
       .then((res) => res.data)
       .catch(() => {

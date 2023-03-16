@@ -18,12 +18,12 @@ subCategoryRouter
       res.sendStatus(500);
     }
   })
-  .post(upload.single("image"), async (req, res) => {
+  .post(async (req, res) => {
     // create
     console.log(req.body);
     try {
-      const newProduct = await Product.create({ ...req.body });
-      res.json(newProduct);
+      const newSubCategory = await SubCategory.create({ ...req.body });
+      res.json({ data: newSubCategory });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -32,19 +32,9 @@ subCategoryRouter
 
 subCategoryRouter
   .route("/many")
-  .patch(async (req, res) => {
-    // updateMany
-    try {
-      const { ids, data } = req.body;
-      res.json({ data: await Product.updateMany(ids, data) });
-    } catch (error) {
-      console.log(error);
-      res.sendStatus(500);
-    }
-  })
   .delete(async (req, res) => {
     // deleteMany
-    res.json({ data: await Product.deleteMany(req.body) });
+    res.json({ data: await SubCategory.deleteMany(req.body) });
   });
 
 subCategoryRouter
@@ -52,8 +42,8 @@ subCategoryRouter
   .get(async (req, res) => {
     // getOne
     try {
-      const product = await Product.findByPk(req.params.id);
-      res.json({ data: product });
+      const subCategory = await SubCategory.findByPk(req.params.id);
+      res.json({ data: subCategory });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -62,22 +52,22 @@ subCategoryRouter
   .delete(async (req, res) => {
     // delete
     try {
-      await Product.destroy({ where: { id: req.params.id } });
+      await SubCategory.destroy({ where: { id: req.params.id } });
       res.json({ data: req.body });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
     }
   })
-  .patch(upload.single("image"), async (req, res) => {
+  .patch(async (req, res) => {
     // update
     try {
-      await Product.update(
-        { ...(await Product.findByPk(req.params.id)), ...req.body },
+      await SubCategory.update(
+        { ...(await SubCategory.findByPk(req.params.id)), ...req.body },
         { where: { id: req.params.id } }
       );
-      const product = await Product.findByPk(req.params.id);
-      res.json({ data: product });
+      const subCategory = await SubCategory.findByPk(req.params.id);
+      res.json({ data: subCategory });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);

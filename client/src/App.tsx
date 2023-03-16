@@ -11,7 +11,6 @@ import ShopPage from './components/Pages/ShopPage';
 import MainPage from './MainPage';
 import OrderForm from './components/UI/OrderForm';
 import ShopingCartPage from './components/Pages/ShoppingCartPage';
-import ContactPage from './components/Pages/DescriptionPage';
 import DescriptionPage from './components/Pages/DescriptionPage';
 import AuthAdminPage from './components/Pages/AuthAdminPage';
 import ContactsPage from './components/Pages/ContactsPage';
@@ -27,6 +26,7 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUserActionThunk()).catch(() => null);
   }, []);
+  
   return (
     <Container>
       <AppNavBar />

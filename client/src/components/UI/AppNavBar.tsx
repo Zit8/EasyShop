@@ -83,21 +83,16 @@ const styles = {
 
 export default function AppNavbar(): JSX.Element {
   const shopName = useParams();
-  //console.log(shopName)
+  
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = (): void => {
     setOpen(true);
   };
-
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
-
-const dispatch = useAppDispatch();
-const shop = useAppSelector((state)=> state.shop)
-console.log(shop)
-const isAuthenticated = useAppSelector(state => state.userData.user);
-
+  const dispatch = useAppDispatch();
+  const shop = useAppSelector((state) => state.shop);
 
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
@@ -105,11 +100,8 @@ const isAuthenticated = useAppSelector(state => state.userData.user);
   // const logoutHandler = (): void => {
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
+  const isAuthenticated = useAppSelector((state) => state.userData.user)
   
-  useEffect(() => {
-    dispatch(getShopThunk()).catch(() => null);
-  }, []);
-
   return (
     <AppBar position="static" style={styles.appBar}>
       <Container maxWidth={false} style={{ paddingLeft: 0, paddingRight: 0 }}>
@@ -147,7 +139,6 @@ const isAuthenticated = useAppSelector(state => state.userData.user);
               </Drawer>
             </Grid>
             <Grid item>
-              
               <Box style={styles.logo}>
               {shop.shop.logo ? (
               <Link href={`/shop/${shop.shop.urlName}`}>
