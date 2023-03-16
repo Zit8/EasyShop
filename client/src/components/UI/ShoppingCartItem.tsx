@@ -1,6 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import {
   Box,
@@ -9,11 +7,8 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  IconButton,
-  TextField,
   Typography,
 } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
 import type { ProductType } from '../../types';
 import { useAppDispatch } from '../../features/reduxHooks';
 import { removeItem } from '../../features/Slices/shoppingCartSlice';
@@ -28,12 +23,7 @@ export default function ShoppingCartItem({ cartItem }: PropsType): JSX.Element {
   };
 
   return (
-    // <Row className="d-flex justify-content-center md-5">
-    //   <Col md={4}>{cartItem.name}</Col>
-    //   <Button onClick={() => deleteBascet(cartItem.id)}>
-    //     Удалить из корзины
-    //   </Button>
-    // </Row>
+    
 
     <Card
       sx={{

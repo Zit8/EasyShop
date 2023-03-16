@@ -87,7 +87,7 @@ export default function AppNavbar(): JSX.Element {
   const handleDrawerOpen = (): void => {
     setOpen(true);
   };
-
+console.log(shopName)
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
