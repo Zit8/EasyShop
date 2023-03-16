@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { getShoppingCartThunk } from '../../features/Slices/shoppingCartSlice';
 import ShoppingCartItem from '../UI/ShoppingCartItem';
+import  Button  from 'react-bootstrap/Button';
 
 export default function ShoppingCertPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export default function ShoppingCertPage(): JSX.Element {
           <ShoppingCartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </Row>
+      <Button href='/orderform'>Оформить заказ</Button>
     </Container>
   );
 }

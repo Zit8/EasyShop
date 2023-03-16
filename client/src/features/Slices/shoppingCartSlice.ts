@@ -38,15 +38,13 @@ export const shoppingCartSlice = createSlice({
   reducers: {
     addItem: (state, action: PayloadAction<ProductType>) => {
       state.shoppingCart.products.push(action.payload);
-      state.totalPrice += action.payload.price;
+      state.totalPrice += (action.payload.price * action.payload.orderCount);
     },
     removeItem: (state, action: PayloadAction<ProductType['id']>) => {
-      // либо так:  Product["id"]
       state.shoppingCart.products.splice(
         state.shoppingCart.products.findIndex((el) => el.id === action.payload),
         1,
       );
-      state.totalPrice -= state.shoppingCart.products[action.payload].price;
     },
   },
 });
