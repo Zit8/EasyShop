@@ -2,6 +2,7 @@ import React from "react";
 import {
   Datagrid,
   DateField,
+  EditButton,
   EmailField,
   List,
   ReferenceField,
@@ -28,6 +29,7 @@ function ShopList(): JSX.Element {
         <TextField source="urlName" />
         <DateField source="createdAt" />
         <DateField source="updatedAt" />
+        <EditButton />
       </Datagrid>
     </List>
   );

@@ -3,6 +3,7 @@ import {
   BooleanField,
   Datagrid,
   DateField,
+  EditButton,
   EmailField,
   List,
   TextField,
@@ -19,6 +20,7 @@ function UserList(): JSX.Element {
         <BooleanField source="role" />
         <DateField source="createdAt" />
         <DateField source="updatedAt" />
+        <EditButton />
       </Datagrid>
     </List>
   );
