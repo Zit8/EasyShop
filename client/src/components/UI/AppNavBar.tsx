@@ -93,7 +93,7 @@ export default function AppNavbar(): JSX.Element {
   };
   const dispatch = useAppDispatch();
   const shop = useAppSelector((state) => state.shop);
- 
+
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
 
