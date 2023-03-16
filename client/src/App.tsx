@@ -13,6 +13,8 @@ import OrderForm from './components/UI/OrderForm';
 import ShopingCartPage from './components/Pages/ShoppingCartPage';
 import ContactPage from './components/Pages/DescriptionPage';
 import DescriptionPage from './components/Pages/DescriptionPage';
+import AuthAdminPage from './components/Pages/AuthAdminPage';
+import ContactsPage from './components/Pages/ContactsPage';
 //import AdminPanel from './admin/Admin';
 
 function App(): JSX.Element {
@@ -27,6 +29,8 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
+        <Route path="/authadmin/:type" element={<AuthAdminPage />} />
+        {/* <Route path="/:name" element={<ShopPage />} /> */}
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         <Route

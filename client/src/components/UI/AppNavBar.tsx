@@ -16,12 +16,13 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { logouUserActionThunk } from '../../features/actions';
 import '@fontsource/inter';
+import { getShopThunk } from '../../features/Slices/shopSlice';
 
 const styles = {
   appBar: {
@@ -53,7 +54,7 @@ const styles = {
     fontSize: '24px',
     fontWeight: 'bold',
     marginLeft: '10px',
-    color: 'black'
+    color: 'black',
   },
   drawer: {
     width: '240px',
@@ -82,6 +83,7 @@ const styles = {
 
 export default function AppNavbar(): JSX.Element {
   const shopName = useParams();
+  //console.log(shopName)
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = (): void => {
     setOpen(true);
@@ -90,8 +92,12 @@ export default function AppNavbar(): JSX.Element {
   const handleDrawerClose = (): void => {
     setOpen(false);
   };
+
 const dispatch = useAppDispatch();
 const shop = useAppSelector((state)=> state.shop)
+console.log(shop)
+const isAuthenticated = useAppSelector(state => state.userData.user);
+
 
   // const userData = useAppSelector((state) => state.userData);
   // const dispatch = useAppDispatch();
@@ -99,6 +105,10 @@ const shop = useAppSelector((state)=> state.shop)
   // const logoutHandler = (): void => {
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
+  
+  useEffect(() => {
+    dispatch(getShopThunk()).catch(() => null);
+  }, []);
 
   return (
     <AppBar position="static" style={styles.appBar}>
@@ -124,24 +134,35 @@ const shop = useAppSelector((state)=> state.shop)
                 sx={{ width: '240px' }}
               >
                 <List sx={styles.list}>
-                  <Link href={`/shop/${shop.shop.name}/description`} sx={styles.listItem} >
+                  <Link
+                    href={`/shop/${shop.shop.name}/description`}
+                    sx={styles.listItem}
+                  >
                     О КОМПАНИИ
                   </Link>
-                  <Link href="/:name/contacts" sx={styles.listItem}>
+                  <Link href={`/${shop.shop.name}/contacts`} sx={styles.listItem}>
                     КОНТАКТЫ
                   </Link>
                 </List>
               </Drawer>
             </Grid>
             <Grid item>
+              
               <Box style={styles.logo}>
-                <Typography variant="h6" color="inherit">
+              {shopName ? (<Typography variant="h6" color="inherit">
                   <img
-                    src="https://img.icons8.com/cotton/64/null/lemon-cake.png"
+                    src={shop.shop.logo}
                     alt="Logo"
                     style={styles.logoImg}
                   />
-                </Typography>
+                </Typography>):(<Typography variant="h6" color="inherit">
+                  <img
+                    src='https://icons8.ru/icon/RGU1hIj8VKFe/магазин'
+                    alt="Logo"
+                    style={styles.logoImg}
+                  />
+                </Typography>)}
+                
                 <Typography style={styles.shopName} variant="h4">
                   {shop.shop.name}
                 </Typography>
@@ -149,15 +170,16 @@ const shop = useAppSelector((state)=> state.shop)
             </Grid>
             <Grid item>
               <Box style={{ display: 'flex' }}>
+                {isAuthenticated ? (<Link href="/auth/logout" style={styles.link}>
+                  LOGOUT
+                </Link>):(
+                  <>
                 <Link href="/auth/signup" style={styles.link}>
                   SINGUP
                 </Link>
                 <Link href="/auth/signin" style={styles.link}>
                   SINGIN
-                </Link>
-                <Link href="/auth/logout" style={styles.link}>
-                  LOGOUT
-                </Link>
+                </Link></>)}
                 <Link href="/bascet">
                   <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
                 </Link>

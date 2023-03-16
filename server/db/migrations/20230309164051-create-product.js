@@ -21,6 +21,10 @@ module.exports = {
       number: {
         type: Sequelize.INTEGER,
       },
+      orderCount: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+      },
       unit: {
         type: Sequelize.TEXT,
       },
