@@ -31,17 +31,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Product",
     }
   );
-  Product.updateMany = async function (products) {
-    products.forEach(async (product) => {
-      await this.update(
-        { ...(await this.findByPk(product.id)), ...product },
-        { where: { id: product.id } }
-      );
-    });
-    return products.reduce((acc, product) => {
-      acc.push(product.id);
-      return acc;
-    }, []);
+  Product.updateMany = async function (ids, data) {
+    await Product.update(data, { where: { id: ids } });
+    return ids;
   };
 
   Product.deleteMany = async function (productsId) {
