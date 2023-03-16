@@ -42,6 +42,7 @@ module.exports = {
           finishingTime: "22:22",
           weekdays: "sunday",
           userId: 1,
+          ratingLink:'<div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/aliexpress/217396642876/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Aliexpress</a><a href="https://yandex.ru/maps/20576/protvino/category/point_of_delivery/18955887118/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Пункт выдачи в Протвино</a><iframe src="https://yandex.ru/map-widget/v1/?ll=37.212153%2C54.866083&mode=search&oid=217396642876&ol=biz&z=16.81" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>',
         },
       ],
       {}

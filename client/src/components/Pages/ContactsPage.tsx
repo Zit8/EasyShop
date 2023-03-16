@@ -14,9 +14,9 @@ export default function ContactsPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const shop = useAppSelector((state) => state.shop);
-  console.log(shop.shop);
+  console.log(shop.shop,'+++++++++');
   const shopName = useParams();
-  console.log(shopName);
+  console.log(shopName,'=========>>>>');
 
   const styles = {
     p: {
@@ -34,24 +34,6 @@ export default function ContactsPage(): JSX.Element {
       <Card style={{ maxWidth: 445, maxHeight: 440 }}>
         <CardHeader title={shop.shop.name} subheader={shop.shop.city} />
         <CardContent>
-          <CardMedia
-            sx={{
-              marginTop: '10px',
-              borderRadius: 2,
-              maxWidth: '100%',
-              height: '35px',
-              width: '50%',
-              display: 'block',
-              margin: 'auto',
-            }}
-            component="img"
-            image={shop.shop.logo}
-            alt="херня"
-          />
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            <p style={styles.p}>Описание:</p> {shop.shop.description}
-          </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <p style={styles.p}>Адрес:</p>
             {shop.shop.address}
@@ -70,9 +52,6 @@ export default function ContactsPage(): JSX.Element {
           <Typography variant="body2" color="textSecondary" component="p">
             <p style={styles.p}>Выходные:</p>
             {shop.shop.weekdays}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <p style={styles.p}>Рейтинг:</p> {shop.shop.ratingLink}
           </Typography>
         </CardContent>
       </Card>
