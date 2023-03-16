@@ -33,7 +33,8 @@ categoryRouter
   .patch(async (req, res) => {
     // updateMany
     try {
-      res.json({ data: await Category.updateMany(req.body) });
+      const { ids, data } = req.body;
+      res.json({ data: await Category.updateMany(ids, data) });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
