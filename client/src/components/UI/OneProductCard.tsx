@@ -15,6 +15,7 @@ import { Add, Remove } from '@mui/icons-material';
 import type { ProductType } from '../../types';
 import { useAppDispatch } from '../../features/reduxHooks';
 import { addItem } from '../../features/Slices/shoppingCartSlice';
+import { productCountDecrement, productCountIncrement } from '../../features/Slices/productsSlice';
 
 type OneProductCardProps = {
   product: ProductType;
@@ -24,12 +25,14 @@ export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(product.orderCount);
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
+    dispatch(productCountIncrement(product.id))
   };
   const handleDecrement = (): void => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+    dispatch(productCountDecrement(product.id))
   };
   const handleOrder = (): void => {
     dispatch(addItem(product));
@@ -67,8 +70,21 @@ export default function OneProductCard({
           spacing={3}
           justifyContent="space-between"
           alignItems="center"
-        >
-          <Grid item>
+        <Grid item xs={12}>
+          <Typography
+            align="center"
+            sx={{
+              wordWrap: 'break-word',
+              fontSize: 14,
+              p: 1,
+              textAlign: 'center',
+            }}
+          >
+            {product.name}
+          </Typography>
+        </Grid>
+        <Grid item sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Grid item sx={{ marginRight: 1 }}>
             <IconButton
               size="small"
               style={{
@@ -80,19 +96,6 @@ export default function OneProductCard({
             >
               <Remove />
             </IconButton>
-          </Grid>
-          <Grid item>
-            <Typography
-              align="center"
-              sx={{
-                wordWrap: 'break-word',
-                fontSize: 14,
-                p: 1,
-                textAlign: 'center',
-              }}
-            >
-              {product.name}
-            </Typography>
           </Grid>
           <Grid item>
             <IconButton

@@ -11,11 +11,8 @@ import ShopPage from './components/Pages/ShopPage';
 import MainPage from './MainPage';
 import OrderForm from './components/UI/OrderForm';
 import ShopingCartPage from './components/Pages/ShoppingCartPage';
-import ContactPage from './components/Pages/DescriptionPage';
 import DescriptionPage from './components/Pages/DescriptionPage';
-import AuthAdminPage from './components/Pages/AuthAdminPage';
-import ContactsPage from './components/Pages/ContactsPage';
-//import AdminPanel from './admin/Admin';
+
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -23,14 +20,16 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUserActionThunk()).catch(() => null);
   }, []);
+  
   return (
     <Container>
       <AppNavBar />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth/:type" element={<AuthPage />} />
-        <Route path="/authadmin/:type" element={<AuthAdminPage />} />
-        {/* <Route path="/:name" element={<ShopPage />} /> */}
+        {/* <Route path="/auth/:type" element={<AuthPage />} /> */}
+        {/* <Route element ={<PrivateRouter isAllowed={!(status === 'logged')} redirectTo="/"/> }>
+          <Route path="/auth/:type" element={<AuthPage />} />
+        </Route> */}
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         <Route

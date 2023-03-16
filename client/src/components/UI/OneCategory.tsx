@@ -12,8 +12,8 @@ export default function OneCategory({
   const [color, setColor] = useState('black');
   return (
     <Col
-      style={{ color }}
-      onMouseOver={() => setColor('blue')}
+      style={{ color, margin: '20px' }}
+      onMouseOver={() => setColor('#B94CEF')}
       onMouseOut={() => setColor('black')}
       onClick={() => handlerCategory(subcategoryName)}
       key={subcategoryName}

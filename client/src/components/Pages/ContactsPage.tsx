@@ -14,10 +14,7 @@ export default function ContactsPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const shop = useAppSelector((state) => state.shop);
-  console.log(shop.shop,'+++++++++');
   const shopName = useParams();
-  console.log(shopName,'=========>>>>');
-
   const styles = {
     p: {
       fontWeight: 'bolder',
