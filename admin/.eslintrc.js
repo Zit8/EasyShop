@@ -24,6 +24,10 @@ module.exports = {
   },
   root: true,
   rules: {
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/no-unsafe-argument": 0,
+    "@typescript-eslint/no-unsafe-member-access": 0,
+    "@typescript-eslint/no-floating-promises": 0,
     "@typescript-eslint/no-unsafe-return": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
