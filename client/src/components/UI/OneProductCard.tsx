@@ -13,6 +13,8 @@ import {
 } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 import type { ProductType } from '../../types';
+import { useAppDispatch } from '../../features/reduxHooks';
+import { addItem } from '../../features/Slices/shoppingCartSlice';
 
 type OneProductCardProps = {
   product: ProductType;
@@ -21,13 +23,16 @@ type OneProductCardProps = {
 export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const [count, setCount] = useState(0);
-  const handleOrder = (): void => {};
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
   };
   const handleDecrement = (): void => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+  };
+  const handleOrder = (): void => {
+    dispatch(addItem(product));
   };
   return (
     <Card

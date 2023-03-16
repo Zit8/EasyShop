@@ -32,6 +32,7 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "react-virtuoso": "^4.1.0",
+    "redux-persist": "^6.0.0",
     "redux-toolkit": "^1.1.2",
     "styled-components": "^5.3.8",
     "typeface-inter": "^3.18.1",
