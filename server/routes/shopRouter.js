@@ -7,12 +7,59 @@ const {
   ShoppingCart,
   ShoppingCartItem,
 } = require("../db/models");
+const upload = require("../middleware/upload");
 
 const shopRouter = express.Router();
 
-shopRouter.route("/:name").get(async (req, res) => {
+const normalizeUrlName = (name) =>
+  name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-zA-Z0-9]+/g, "");
+
+shopRouter.route("/").post(upload.single("logo"), async (req, res) => {
   try {
-    const oneShop = await Shop.findOne({ where: { name: req.params.name } });
+    const {
+      name,
+      description,
+      logo,
+      city,
+      address,
+      phone,
+      email,
+      startTime,
+      finishingTime,
+      weekdays,
+      userId,
+      ratingLink,
+    } = req.body;
+    await Shop.create({
+      name,
+      description,
+      logo,
+      city,
+      address,
+      phone,
+      email,
+      startTime,
+      finishingTime,
+      weekdays,
+      userId,
+      ratingLink,
+      urlName: normalizeUrlName(name),
+    });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
+shopRouter.route("/:urlName").get(async (req, res) => {
+  try {
+    const oneShop = await Shop.findOne({
+      where: { urlName: req.params.urlName },
+    });
     console.log(oneShop, "===========");
 
     return res.json(oneShop.dataValues);
@@ -22,9 +69,9 @@ shopRouter.route("/:name").get(async (req, res) => {
   }
 });
 
-shopRouter.route("/:name/products").get(async (req, res) => {
+shopRouter.route("/:urlName/products").get(async (req, res) => {
   try {
-    const shop = await Shop.findOne({ where: { name: req.params.name } });
+    const shop = await Shop.findOne({ where: { urlName: req.params.urlName } });
     const allShopProducts = await Product.findAll({
       order: [["createdAt", "DESC"]],
       where: {
@@ -44,7 +91,7 @@ shopRouter.route("/:name/products").get(async (req, res) => {
   }
 });
 
-shopRouter.route("/:name/order").post(async (req, res) => {
+shopRouter.route("/:urlName/order").post(async (req, res) => {
   try {
     const {
       products,
@@ -54,7 +101,7 @@ shopRouter.route("/:name/order").post(async (req, res) => {
       deliveryData,
       deliveryTime,
     } = req.body;
-    const shop = await Shop.findOne({ where: { name: req.params.name } });
+    const shop = await Shop.findOne({ where: { urlName: req.params.urlName } });
     const shoppingCart = await ShoppingCart.create({
       shopId: shop.dataValues.id,
       userId,

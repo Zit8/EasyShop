@@ -1,4 +1,5 @@
 const express = require("express");
+const upload = require("../../middleware/upload");
 const { Product } = require("../../db/models");
 
 const productRouter = express.Router();
@@ -17,7 +18,7 @@ productRouter
       res.sendStatus(500);
     }
   })
-  .post(async (req, res) => {
+  .post(upload.single("image"), async (req, res) => {
     // create
     console.log(req.body);
     try {
@@ -34,7 +35,8 @@ productRouter
   .patch(async (req, res) => {
     // updateMany
     try {
-      res.json({ data: await Product.updateMany(req.body) });
+      const { ids, data } = req.body;
+      res.json({ data: await Product.updateMany(ids, data) });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -67,7 +69,7 @@ productRouter
       res.sendStatus(500);
     }
   })
-  .patch(async (req, res) => {
+  .patch(upload.single("image"), async (req, res) => {
     // update
     try {
       await Product.update(
