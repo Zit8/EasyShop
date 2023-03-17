@@ -9,7 +9,7 @@ const apiProductRouter = require("./routes/adminPanelRoutes/apiProducts");
 const apiCategoriesRouter = require("./routes/adminPanelRoutes/apiCategories");
 const userRouter = require("./routes/adminPanelRoutes/apiUsers");
 const apiOrderRouter = require("./routes/adminPanelRoutes/apiOrders");
-const apiSubCategoryRouter = require("./routes/adminPanelRoutes/apiSubCategory")
+const apiSubCategoryRouter = require("./routes/adminPanelRoutes/apiSubCategory");
 
 require("dotenv").config();
 
@@ -39,7 +39,7 @@ app.use(morgan("dev"));
 // app.use(express.static("public"));
 
 app.use("/shop", shopRouter);
-app.use("/api/auth/createshop", authRouter);
+app.use("/api/auth/", authRouter);
 app.use("/api/products", apiProductRouter);
 app.use("/api/categories", apiCategoriesRouter);
 app.use("/api/users", userRouter);
