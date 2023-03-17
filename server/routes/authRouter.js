@@ -36,6 +36,7 @@ authRouter.post("/signup", async (req, res) => {
 authRouter
   .route("/createshop")
   .post(upload.single("logo"), async (req, res) => {
+  console.log(req.body);
     try {
       const {
         name,

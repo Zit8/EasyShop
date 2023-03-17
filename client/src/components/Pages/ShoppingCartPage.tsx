@@ -27,8 +27,11 @@ export default function ShoppingCertPage(): JSX.Element {
           <ShoppingCartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </Row>
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}><h3>Итого: {totalPrice} руб</h3></div>
-      <Button style={{display:'flex', justifyContent:'center', alignItems:'center'}} href='/orderform'>Оформить заказ</Button>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <h3>Итого: {totalPrice} руб</h3></div>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <Button style={{width:'30%'}} href='/orderform'>Оформить заказ</Button>
+      </div>
     </Container>
   );
 }

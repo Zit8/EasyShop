@@ -15,6 +15,7 @@ import shopSlice from '../features/Slices/shopSlice';
 import productsSlice from '../features/Slices/productsSlice';
 // eslint-disable-next-line import/no-named-as-default
 import shoppingCartSlice from '../features/Slices/shoppingCartSlice';
+import createShopSlice from '../features/Slices/createShopSlice';
 
 const persistConfig = {
   key: 'root',
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   shop: shopSlice,
   products: productsSlice,
   shoppingCart: shoppingCartSlice,
+  createShop: createShopSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
