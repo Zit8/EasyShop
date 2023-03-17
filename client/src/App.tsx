@@ -41,7 +41,6 @@ function App(): JSX.Element {
         <Route path="/registration" element={<SignUpUserForm />} />
         <Route path="/shop/:urlName/contacts" element={<ContactsPage />} />
         <Route path="/auth/createshop" element={<CreateShopForm />} />
-
         <Route
           path="/shop/:urlName/description"
           element={<DescriptionPage />}
