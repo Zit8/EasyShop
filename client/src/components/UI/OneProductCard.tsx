@@ -87,6 +87,17 @@ export default function OneProductCard({
           >
             {product.name}
           </Typography>
+          <Typography
+            align="center"
+            sx={{
+              wordWrap: 'break-word',
+              fontSize: 14,
+              p: 1,
+              textAlign: 'center',
+            }}
+          >
+           Цена: {product.price}
+          </Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Grid item sx={{ marginRight: 1 }}>
