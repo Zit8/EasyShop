@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Admin, ListGuesser, Resource } from "react-admin";
+import CategoryList from "./components/pages/CategoryList";
+import ProductList from "./components/pages/ProductList";
+import ShopList from "./components/pages/ShopList";
+import UserList from "./components/pages/UserList";
+import ProductCreate from "./components/UI/ProductCreate";
+import ProductEdit from "./components/UI/ProductEdit";
+import dataApiProvider from "./dataProvider/dataProvider";
 
-function App() {
+function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Admin dataProvider={dataApiProvider}>
+      <Resource
+        name="products"
+        list={ProductList}
+        recordRepresentation="name"
+        edit={ProductEdit}
+        create={ProductCreate}
+      />
+      <Resource
+        name="categories"
+        list={CategoryList}
+        recordRepresentation="name"
+      />
+      <Resource name="users" list={UserList} recordRepresentation="name" />
+      <Resource name="shops" list={ShopList} recordRepresentation="name" />
+      <Resource
+        name="subcategories"
+        list={ListGuesser}
+        recordRepresentation="name"
+      />
+      <Resource name="orders" list={ListGuesser} recordRepresentation="name" />
+    </Admin>
   );
 }
 

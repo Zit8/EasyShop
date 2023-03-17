@@ -1,11 +1,45 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  persistStore,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import userSlice from '../features/Slices/userSlice';
+import shopSlice from '../features/Slices/shopSlice';
+import productsSlice from '../features/Slices/productsSlice';
+// eslint-disable-next-line import/no-named-as-default
+import shoppingCartSlice from '../features/Slices/shoppingCartSlice';
 
-const rootReducer = combineReducers({});
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
-export const store = configureStore({
-  reducer: rootReducer,
+const rootReducer = combineReducers({
+  userData: userSlice,
+  shop: shopSlice,
+  products: productsSlice,
+  shoppingCart: shoppingCartSlice,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+export type RootState = ReturnType<typeof rootReducer>;
+export const persistor = persistStore(store);
+
 export default store;

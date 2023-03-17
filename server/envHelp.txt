@@ -1,4 +1,4 @@
-DB_NAME=имяБазыДанных
+DB_NAME=easyshop
 DB_USER=admin
 DB_PASS=123
 DB_PORT=3001

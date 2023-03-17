@@ -1,4 +1,5 @@
 const express = require("express");
+const upload = require("../../middleware/upload");
 const { Product } = require("../../db/models");
 
 const productRouter = express.Router();
@@ -6,7 +7,7 @@ const productRouter = express.Router();
 productRouter
   .route("/")
   .get(async (req, res) => {
-    // getList
+    // getList{ data: {Record[]}, total: {int} }
     try {
       const allProducts = await Product.findAll({
         order: [["createdAt", "DESC"]],
@@ -17,12 +18,12 @@ productRouter
       res.sendStatus(500);
     }
   })
-  .post(async (req, res) => {
+  .post(upload.single("image"), async (req, res) => {
     // create
-    console.log(req.body);
+    console.log(req.body.data, "<<<<<<<<<<<<<<<<<");
     try {
-      const newProduct = await Product.create({ ...req.body });
-      res.json(newProduct);
+      const newProduct = await Product.create(req.body.data);
+      res.json({ data: newProduct });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -34,7 +35,8 @@ productRouter
   .patch(async (req, res) => {
     // updateMany
     try {
-      res.json({ data: await Product.updateMany(req.body) });
+      const { ids, data } = req.body;
+      res.json({ data: await Product.updateMany(ids, data) });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -67,7 +69,7 @@ productRouter
       res.sendStatus(500);
     }
   })
-  .patch(async (req, res) => {
+  .patch(upload.single("image"), async (req, res) => {
     // update
     try {
       await Product.update(

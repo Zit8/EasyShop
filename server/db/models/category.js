@@ -2,11 +2,6 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate({ User, SubCategory }) {
       Category.belongsTo(User, { foreignKey: "userId" });
       Category.hasMany(SubCategory, { foreignKey: "categoryId" });
@@ -23,17 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Category.updateMany = async function (categories) {
-    categories.forEach(async (category) => {
-      await this.update(
-        { ...(await this.findByPk(category.id)), ...category },
-        { where: { id: category.id } }
-      );
-    });
-    return categories.reduce((acc, category) => {
-      acc.push(category.id);
-      return acc;
-    }, []);
+  Category.updateMany = async function (ids, data) {
+    await Category.update(data, { where: { id: ids } });
+    return ids;
   };
 
   Category.deleteMany = async function (categoriesId) {

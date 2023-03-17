@@ -1,22 +1,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("ShoppingCards", {
+    await queryInterface.createTable("ShoppingCarts", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      productId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: "Products",
-          },
-          key: "id",
-        },
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -51,6 +41,14 @@ module.exports = {
       deliveryTime: {
         type: Sequelize.TEXT,
       },
+      paymentStatus: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
+      paymentWay: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -64,6 +62,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("ShoppingCards");
+    await queryInterface.dropTable("ShoppingCarts");
   },
 };
