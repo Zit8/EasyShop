@@ -76,6 +76,7 @@ authRouter
 
 authRouter.post("/signin", async (req, res) => {
   const { email, passwordHash } = req.body;
+  console.log(req.body);
   if (!email && !passwordHash) return res.sendStatus(405);
   try {
     const user = await User.findOne({ where: { email } });

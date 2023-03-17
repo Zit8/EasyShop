@@ -5,65 +5,109 @@ module.exports = {
       "Products",
       [
         {
-          name: "Apple AirPods",
-          description:
-            "(2nd Generation) Wireless Earbuds with Lightning Charging Case Included. Over 24 Hours of Battery Life, Effortless…",
+          name: "Уточка",
+          description: "Бенто торт",
           image:
-            "https://images-na.ssl-images-amazon.com/images/I/61Zh467pKjL._AC_UL675_SR675,480_.jpg",
-          number: 111,
-          unit: "dr",
-          subcategoryId: 1,
+            "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.17.22.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 137,
           delivered: false,
-          shopId: 3,
+          shopId: 1,
           userId: 1,
           hidden: false,
-          price: 94,
+          price: 800,
         },
         {
-          name: "Apple AirPods Po",
-          description:
-            "(2nd Generation) Wireless Earbuds with Lightning Charging Case Included. Over 24 Hours of Battery Life, Effortless…",
-          image:
-            "https://images-na.ssl-images-amazon.com/images/I/61f1YfTkTDL._AC_UL675_SR675,480_.jpg",
-          number: 45,
-          unit: "dr",
-          subcategoryId: 1,
+          name: "Work",
+          description: "Бенто торт",
+          image: "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.18.03.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 137,
           delivered: false,
-          shopId: 3,
+          shopId: 1,
           userId: 1,
           hidden: false,
-          price: 194,
+          price: 800,
         },
         {
-          name: "Apple 2021 10.2-inch iPad (Wi-Fi, 64GB) - Silver",
-          description:
-            "(2nd Generation) Wireless Earbuds with Lightning Charging Case Included. Over 24 Hours of Battery Life, Effortless…",
+          name: "Попкорн",
+          description: "Торт",
           image:
-            "https://images-na.ssl-images-amazon.com/images/I/61PnHlc0HCL._AC_UL675_SR675,480_.jpg",
-          number: 89,
-          unit: "ty",
-          subcategoryId: 1,
+            "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.19.01.md.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 121,
           delivered: false,
-          shopId: 3,
+          shopId: 1,
           userId: 1,
           hidden: false,
-          price: 229,
+          price: 1500,
         },
         {
-          name: "Amazon Halo View fitness tracker",
-          description:
-            "(2nd Generation) Wireless Earbuds with Lightning Charging Case Included. Over 24 Hours of Battery Life, Effortless…",
+          name: "Дино",
+          description: "Торт",
           image:
-            "https://images-na.ssl-images-amazon.com/images/I/51u6VxGdpHL._AC_UL675_SR675,480_.jpg",
-          number: 111,
-          unit: "dr",
-          subcategoryId: 1,
+            "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.20.18.md.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 121,
           delivered: false,
-          shopId: 3,
+          shopId: 1,
           userId: 1,
           hidden: false,
-          price: 79,
+          price: 1500,
         },
+        {
+          name: "Ягодицы",
+          description: "Торт",
+          image:
+            "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.16.46.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 137,
+          delivered: false,
+          shopId: 1,
+          userId: 1,
+          hidden: false,
+          price: 800,
+        },
+        {
+          name: "Бокс 1",
+          description: "Торт",
+          image:
+            "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.15.30.md.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 143,
+          delivered: false,
+          shopId: 1,
+          userId: 1,
+          hidden: false,
+          price: 1200,
+        },
+        {
+          name: "Бокс 2",
+          description: "Торт",
+          image:
+            "https://ltdfoto.ru/images/2023/03/17/SNIMOK-EKRANA-2023-03-17-V-15.15.52.png",
+          number: 10,
+          unit: "кг",
+          subcategoryId: 143,
+          delivered: false,
+          shopId: 1,
+          userId: 1,
+          hidden: false,
+          price: 1200,
+        },
+
+        // бенто 137
+        // эклеры 123
+        // макарунс 128
+        // торты 121
+        // пирожные 122
+        // комбо 143
       ],
       {}
     );
