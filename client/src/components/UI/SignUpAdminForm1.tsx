@@ -2,29 +2,50 @@ import React, { useState } from 'react';
 
 import { Card, Form, Input, Button, Switch, Typography } from 'antd';
 import './style.css';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'antd/es/form/Form';
 import { useAppDispatch } from '../../features/reduxHooks';
 import { signUpUserActionThunk } from '../../features/actions';
 import type { UserSubmitForm } from '../../types';
-import { useNavigate } from 'react-router-dom';
+
+type TypyForm = {
+  name: string;
+  email: string;
+  passwordHash: string;
+};
 
 export default function SignUpAdminForm1(): JSX.Element {
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
-    // e.preventDefault();
-  console.log(e)
-    const data = Object.fromEntries(
-      new FormData(e.currentTarget),
-    ) as unknown as UserSubmitForm;
+  // const submitHandler = (e: TypyForm): void => {
+  //   //e.preventDefault();
+  // console.log(e)
+  //   const data = Object.fromEntries(
+  //     new FormData(e.currentTarget),
+  //   ) as unknown as UserSubmitForm;
 
-    dispatch(signUpUserActionThunk(data)).catch(() => null);
+  //   dispatch(signUpUserActionThunk(data)).catch(() => null);
+  // };
+  // const handlerClick = ():void => {
+  //     navigate('/')
+  // }
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    passwordHash: '',
+  });
+  console.log(form);
+
+  const formHandler = (e): void => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handlerClick = ():void => {
-      navigate('/')
-  }
 
+  const submitHandler = (): void => {
+    dispatch(signUpUserActionThunk(form))
+      .then((res) => navigate('/auth/createshop'))
+      .catch((err) => null);
+  };
 
   return (
     <>
@@ -66,6 +87,8 @@ export default function SignUpAdminForm1(): JSX.Element {
             Имя пользователя
           </Typography.Title>
           <Input
+            value={form.name}
+            onChange={formHandler}
             placeholder="Введите Ваше имя"
             name="name"
             style={{
@@ -91,6 +114,8 @@ export default function SignUpAdminForm1(): JSX.Element {
             Email
           </Typography.Title>
           <Input
+            value={form.email}
+            onChange={formHandler}
             placeholder="Введите адрес Вашей электронной почты"
             name="email"
             style={{
@@ -116,6 +141,8 @@ export default function SignUpAdminForm1(): JSX.Element {
             Пароль
           </Typography.Title>
           <Input.Password
+            value={form.passwordHash}
+            onChange={formHandler}
             placeholder="Придумайте безопасный пароль"
             name="passwordHash"
             style={{
@@ -134,7 +161,7 @@ export default function SignUpAdminForm1(): JSX.Element {
               marginTop: '40px',
             }}
           >
-            <Button onClick={handlerClick}
+            <Button
               type="primary"
               htmlType="submit"
               style={{

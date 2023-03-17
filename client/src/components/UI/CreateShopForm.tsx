@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, VoidFunctionComponent } from 'react';
 import {
   Card,
   Form,
@@ -10,8 +10,31 @@ import {
   TimePicker,
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '../../features/reduxHooks';
+import { createShopActionThunk } from '../../features/Slices/createShopSlice';
+import type { ShopType } from '../../types';
 
 export default function CreateShopForm(): JSX.Element {
+  const dispath = useAppDispatch();
+  const [form,setFrom] = useState({
+    name:'',
+    description:'',
+    city:'',
+    address:'',
+    phone:'',
+    email:'',
+    userId:1,
+  })
+  const handelrInput = (e) => { 
+    setFrom((prev)=>({...prev,[e.target.name]:e.target.value}))
+  }
+  console.log(form)
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+    
+    dispath(createShopActionThunk(form)).catch((err) => null);
+   window.location = 'http://localhost:3002';
+  };
+
   const { Search } = Input;
   const options = [
     { label: 'ПН', value: 'пн' },
@@ -62,7 +85,7 @@ export default function CreateShopForm(): JSX.Element {
         }}
       >
         <Form
-          //   onSubmit={submitHandler}
+          onFinish={submitHandler}
           style={{
             alignItems: 'center',
             justifyContent: 'center',
@@ -86,6 +109,8 @@ export default function CreateShopForm(): JSX.Element {
             НАЗВАНИЕ МАГАЗИНА
           </Typography.Title>
           <Input
+          value={form.name}
+          onChange={handelrInput}
             name="name"
             placeholder="Введите название магазина"
             style={{
@@ -114,6 +139,8 @@ export default function CreateShopForm(): JSX.Element {
             ОПИСАНИЕ МАГАЗИНА
           </Typography.Title>
           <Input
+            value={form.description}
+            onChange={handelrInput}
             name="description"
             placeholder="Опишите Ваш магазин"
             style={{
@@ -177,6 +204,8 @@ export default function CreateShopForm(): JSX.Element {
             ГОРОД
           </Typography.Title>
           <Input
+          value={form.city}
+          onChange={handelrInput}
             name="city"
             placeholder="Введите город"
             style={{
@@ -205,7 +234,10 @@ export default function CreateShopForm(): JSX.Element {
           >
             АДРЕС
           </Typography.Title>
+          <Form.Item name="address">
           <Input
+            value={form.address}
+            onChange={handelrInput}
             name="address"
             placeholder="Введите адрес магазина"
             style={{
@@ -218,6 +250,7 @@ export default function CreateShopForm(): JSX.Element {
               transform: 'translateX(-50%)',
             }}
           />
+          </Form.Item>
           <Typography.Title
             level={5}
             style={{
@@ -235,6 +268,8 @@ export default function CreateShopForm(): JSX.Element {
             ТЕЛЕФОН
           </Typography.Title>
           <Input
+          value={form.phone}
+          onChange={handelrInput}
             name="phone"
             placeholder="Введите номер телефона"
             style={{
@@ -263,6 +298,8 @@ export default function CreateShopForm(): JSX.Element {
             ПОЧТА
           </Typography.Title>
           <Input
+           value={form.email}
+           onChange={handelrInput}
             name="email"
             placeholder="Введите электронную почту"
             style={{
@@ -337,6 +374,7 @@ export default function CreateShopForm(): JSX.Element {
             ЗАГРУЗИТЕ ССЫЛКУ НА ВИДЖЕТ
           </Typography.Title>
           <Input
+          
             name="ratingLink"
             placeholder="Введите ссылку на виджет"
             style={{
