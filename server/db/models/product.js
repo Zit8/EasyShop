@@ -41,8 +41,10 @@ module.exports = (sequelize, DataTypes) => {
     const ids = [];
     productsId.forEach(async (id) => {
       ids.push(id);
-      await Product.destroy({ where: { id } });
+      const i = await Product.destroy({ where: { id } });
+      console.log(i, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     });
+    console.log(ids);
     return ids;
   };
 
