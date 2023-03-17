@@ -42,9 +42,15 @@ productRouter
       res.sendStatus(500);
     }
   })
-  .delete(async (req, res) => {
+  .post(async (req, res) => {
     // deleteMany
-    res.json({ data: await Product.deleteMany(req.body) });
+    try {
+      console.log(req.body, '<<<<<<<<<<<<<<<<<<<<<<<<');
+      res.json({ data: await Product.deleteMany(req.body.ids) });
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
   });
 
 productRouter

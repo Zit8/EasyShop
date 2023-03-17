@@ -17,12 +17,32 @@ type UpdateType = {
   data: CategoryType | ProductType;
 };
 
+type ResManyDeleteType = {
+  data: IdType[];
+};
+
+const deleteManyProducts: (
+  ids: [number]
+) => Promise<ResManyDeleteType> = async (ids) => {
+  const { data }: AxiosResponse<ResManyDeleteType> = await axios.post(
+    "http://localhost:3001/api/products/many",
+    { ids }
+  );
+  return data;
+};
+const deleteOneProduct: (id: number) => Promise<ProductType[]> = async (id) => {
+  const { data }: AxiosResponse<ProductType[]> = await axios.delete(
+    `http://localhost:3001/api/products/${id}`
+  );
+
+  return data;
+};
 const getListOrders: () => Promise<OrderType[]> = async () => {
   const { data }: AxiosResponse<OrderType[]> = await axios(
     "http://localhost:3001/api/orders"
   );
   console.log(data);
-  
+
   return data;
 };
 const getListSubCategories: () => Promise<SubCategoryType[]> = async () => {
@@ -205,6 +225,22 @@ const dataApiProvider: DataProvider = {
         return updateManyProducts(params.data);
       case "categories":
         return updateManyCategories(params.data);
+      default:
+        break;
+    }
+  },
+  delete: async (resource: string, params: any) => {
+    switch (resource) {
+      case "products":
+        return deleteOneProduct(params.data);
+      default:
+        break;
+    }
+  },
+  deleteMany: async (resource: string, params: any) => {
+    switch (resource) {
+      case "products":
+        return deleteManyProducts(params.ids);
       default:
         break;
     }
