@@ -75,7 +75,7 @@ shopRouter.route("/:urlName").get(async (req, res) => {
       where: { urlName: req.params.urlName },
     });
     console.log(oneShop, "===========");
-    if (!oneShop) return res.end()
+    if (!oneShop) return res.end();
     return res.json(oneShop.dataValues);
   } catch (err) {
     console.log(err);
@@ -130,6 +130,44 @@ shopRouter.route("/:urlName/order").post(async (req, res) => {
       shoppingCart.id
     );
     res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
+shopRouter.route("/createshop").post(async (req, res) => {
+  const {
+    name,
+    description,
+    logo,
+    city,
+    address,
+    phone,
+    email,
+    startTime,
+    finishingTime,
+    weekdays,
+    userId,
+    ratingLink,
+  } = req.body;
+  if (!userId && !name && !phone && !city) res.sendStatus(401);
+  try {
+    const newShop = await Shop.create({
+      name,
+      description,
+      logo,
+      city,
+      address,
+      phone,
+      email,
+      startTime,
+      finishingTime,
+      weekdays,
+      userId: req.session.user.id,
+      ratingLink,
+    });
+    return res.json(newShop);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
