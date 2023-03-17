@@ -6,7 +6,6 @@ import { signUpUserActionThunk } from '../../features/actions';
 import { useAppDispatch } from '../../features/reduxHooks';
 import type { UserSubmitForm } from '../../types';
 
-
 export default function SignUpUserForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -14,16 +13,16 @@ export default function SignUpUserForm(): JSX.Element {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const data = Object.fromEntries(
-      new FormData(e.currentTarget)
+      new FormData(e.currentTarget),
     ) as unknown as UserSubmitForm;
 
     dispatch(signUpUserActionThunk(data)).catch(() => null);
   };
-  const handlerClick = ():void => {
-    if(value===true) {
-      navigate('/authadmin/:type')
+  const handlerClick = (): void => {
+    if (value === true) {
+      navigate('/authadmin/:type');
     }
-  }
+  };
 
   return (
     <Form onSubmit={submitHandler}>
@@ -50,10 +49,15 @@ export default function SignUpUserForm(): JSX.Element {
         <option value="true">Владелец</option>
       </Form.Select>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <Button onClick={handlerClick} variant="primary" type="submit" style={{ margin: 15 }}>
-    Submit
-  </Button>
-</div>
+        <Button
+          onClick={handlerClick}
+          variant="primary"
+          type="submit"
+          style={{ margin: 15 }}
+        >
+          Submit
+        </Button>
+      </div>
     </Form>
   );
 }

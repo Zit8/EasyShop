@@ -12,7 +12,7 @@ const normalizeUrlName = (name) =>
     .replace(/[^a-zA-Z0-9]+/g, "");
 
 authRouter.post("/signup", async (req, res) => {
-  console.log(req.body);
+  console.log('AAAAAAA', req.body);
   const { name, email, passwordHash, role } = req.body;
   if (!name && !email && !passwordHash) return res.sendStatus(401);
   try {
@@ -76,6 +76,7 @@ authRouter
 
 authRouter.post("/signin", async (req, res) => {
   const { email, passwordHash } = req.body;
+  console.log(req.body);
   if (!email && !passwordHash) return res.sendStatus(405);
   try {
     const user = await User.findOne({ where: { email } });

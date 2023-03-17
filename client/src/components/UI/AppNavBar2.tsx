@@ -55,20 +55,19 @@ export default function AppNavbar2(): JSX.Element {
       </Menu.Item>
       <Menu.Item key="logo" style={{ margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          {/* <Link href={`/shop/${shop.shop.urlName}`}>
-            <span
-              style={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                fontSize: '30px',
-                lineHeight: '25px',
-                color: '#000',
-              }}
-            >
-              {shop.shop.name}
-            </span>
-          </Link> */}
+          <span
+            style={{
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: 700,
+              fontSize: '30px',
+              lineHeight: '25px',
+              color: '#000',
+            }}
+          >
+            <a href={`/shop/${shop.shop.urlName}`} />
+            {shop.shop.name}
+          </span>
         </div>
       </Menu.Item>
 
