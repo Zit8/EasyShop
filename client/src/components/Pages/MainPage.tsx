@@ -50,6 +50,7 @@ export default function MainPage(): JSX.Element {
       <Button
         type="primary"
         htmlType="submit"
+        href="/auth/signup"
         style={{
           marginTop: '30px',
           width: '279px',
