@@ -28,9 +28,7 @@ export default function OneProductCard({
   product,
 }: OneProductCardProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const [count, setCount] = useState<number>(
-    product.orderCount,
-  );
+  const [count, setCount] = useState<number>(product.orderCount);
   const handleIncrement = (): void => {
     setCount((prevCount) => prevCount + 1);
     dispatch(productCountIncrement(product.id));
@@ -44,19 +42,19 @@ export default function OneProductCard({
   };
   return (
     <Card
-    sx={{
-      maxWidth: 235,
-      height: 'auto',
-      margin: 2,
-      backgroundColor: '#FAFAFA',
-      boxShadow: '0px 0px 4px 1px rgba(0,0,0,0.5)',
-      borderRadius: '8px',
-      transition: 'box-shadow 0.3s ease-in-out',
-      '&:hover': {
-        boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.5)',
-      },
-      position: 'relative', // added
-    }}
+      sx={{
+        maxWidth: 235,
+        height: 'auto',
+        margin: 2,
+        backgroundColor: '#FAFAFA',
+        boxShadow: '0px 0px 4px 1px rgba(0,0,0,0.5)',
+        borderRadius: '8px',
+        transition: 'box-shadow 0.3s ease-in-out',
+        '&:hover': {
+          boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.5)',
+        },
+        position: 'relative', // added
+      }}
     >
       <CardMedia
         sx={{
@@ -141,7 +139,12 @@ export default function OneProductCard({
         </div>
       </Box>
       <CardActions>
-        <Button variant="contained" fullWidth onClick={handleOrder}>
+        <Button
+          style={{ backgroundColor: 'black', color: 'white' }}
+          variant="contained"
+          fullWidth
+          onClick={handleOrder}
+        >
           Заказать
         </Button>
       </CardActions>
