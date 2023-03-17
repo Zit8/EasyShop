@@ -29,7 +29,7 @@ export const createShopActionThunk = createAsyncThunk<ShopType>(
   'createshop',
   async (data) =>
     axios
-      .post<ShopType>('/api/auth/createshop', data)
+      .post<ShopType>('/api/auth/createshop', {...data})
       .then((res) => res.data)
       .catch(() => {
         throw new Error('err');

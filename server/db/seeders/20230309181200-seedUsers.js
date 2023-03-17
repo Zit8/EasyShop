@@ -7,9 +7,9 @@ module.exports = {
       "Users",
       [
         {
-          name: "Creator",
-          email: "123@123",
-          passwordHash: await bcrypt.hash("2", 10),
+          name: "Vitya",
+          email: "v.kaledinceff@gmail.com ",
+          passwordHash: await bcrypt.hash("123", 10),
           role: true,
         },
       ],
