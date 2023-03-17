@@ -1,11 +1,11 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const { User } = require("../db/models");
+const { User, Shop } = require("../db/models");
 
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const { name, email, passwordHash, role } = req.body;
   if (!name && !email && !passwordHash) return res.sendStatus(401);
   try {
@@ -23,6 +23,44 @@ authRouter.post("/signup", async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.sendStatus(403);
+  }
+});
+
+authRouter.route("/createshop").post(async (req, res) => {
+  const {
+    name,
+    description,
+    logo,
+    city,
+    address,
+    phone,
+    email,
+    startTime,
+    finishingTime,
+    weekdays,
+    userId,
+    ratingLink,
+  } = req.body;
+  if (!userId && !name && !phone && !city) res.sendStatus(401);
+  try {
+    const newShop = await Shop.create({
+      name,
+      description,
+      logo,
+      city,
+      address,
+      phone,
+      email,
+      startTime,
+      finishingTime,
+      weekdays,
+      userId: req.session.user.id,
+      ratingLink,
+    });
+    return res.json(newShop);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
   }
 });
 

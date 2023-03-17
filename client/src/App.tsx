@@ -17,8 +17,9 @@ import ContactsPage from './components/Pages/ContactsPage';
 import MainePage from './components/Pages/MainePage';
 import SignInAdminForm from './components/UI/SignInAdminForm';
 import SignUpUserForm from './components/UI/SignUpUserForm';
-//import SignUpAdminForm from './components/UI/SignUpAdminForm';
-//import AdminPanel from './admin/Admin';
+import AppNavbar2 from './components/UI/AppNavBar2';
+// import SignUpAdminForm from './components/UI/SignUpAdminForm';
+// import AdminPanel from './admin/Admin';
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -26,10 +27,10 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUserActionThunk()).catch(() => null);
   }, []);
-  
+
   return (
     <Container>
-      <AppNavBar />
+      <AppNavbar2 />
       <Routes>
         <Route path="/" element={<MainePage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
