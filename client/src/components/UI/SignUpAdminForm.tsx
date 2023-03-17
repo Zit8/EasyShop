@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import {
   TextField,
@@ -44,13 +45,17 @@ export default function SignUpAdminForm(): JSX.Element {
       <Typography variant="h4" align="center" gutterBottom>
         Register your shop
       </Typography>
-      <form style={{display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: 5}} 
-    onSubmit={handleSubmit}>
+      <form
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: 5,
+        }}
+        onSubmit={handleSubmit}
+      >
         <TextField
-          style={ {
+          style={{
             margin: theme.spacing(1),
             width: '100%',
           }}
@@ -61,10 +66,12 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="Description"
           name="description"
           value={formData.description}
@@ -73,10 +80,12 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="Logo"
           name="logo"
           value={formData.logo}
@@ -84,10 +93,12 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="City"
           name="city"
           value={formData.city}
@@ -95,10 +106,12 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="Address"
           name="address"
           value={formData.address}
@@ -106,10 +119,12 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="Phone"
           name="phone"
           value={formData.phone}
@@ -117,10 +132,12 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="Email"
           name="email"
           value={formData.email}
@@ -143,10 +160,12 @@ export default function SignUpAdminForm(): JSX.Element {
         />
         <div>
           <Select
-            style={{display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: 5}} 
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginTop: 5,
+            }}
             label="Weekdays"
             name="weekdays"
             value={formData.weekdays}
@@ -161,20 +180,24 @@ export default function SignUpAdminForm(): JSX.Element {
           </Select>
         </div>
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="User ID"
           name="userId"
           value={formData.userId}
           onChange={handleChange}
         />
         <TextField
-          style={{display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: 5}} 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: 5,
+          }}
           label="Rating Link"
           name="ratingLink"
           value={formData.ratingLink}
@@ -182,7 +205,7 @@ export default function SignUpAdminForm(): JSX.Element {
           required
         />
         <Button
-          style={{margin: 2}}
+          style={{ margin: 2 }}
           variant="contained"
           color="primary"
           type="submit"

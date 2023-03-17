@@ -23,7 +23,7 @@ export default function CreateShopForm(): JSX.Element {
     { label: 'ВС', value: 'вс' },
   ];
 
-  const onFinish = (values) => {
+  const onFinish: (values: any) => void = (values) => {
     console.log('Selected buttons:', values.buttons);
   };
 
@@ -308,7 +308,6 @@ export default function CreateShopForm(): JSX.Element {
                 type="primary"
                 htmlType="submit"
                 style={{
-                  width: '140px',
                   height: '34px',
                   background: '#141313',
                   borderRadius: '25px',

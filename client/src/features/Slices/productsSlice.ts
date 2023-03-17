@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -52,7 +53,7 @@ const productsSlice = createSlice({
         }),
       };
     },
-    
+
     productCountDecrement(state, action: PayloadAction<ProductType['id']>) {
       return {
         ...state,

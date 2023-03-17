@@ -1,12 +1,11 @@
-import { Image, Menu, Button, Link } from 'antd';
+import { Image, Menu, Button } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { logouUserActionThunk } from '../../features/actions';
 import '@fontsource/inter';
 import { getShopThunk } from '../../features/Slices/shopSlice';
-import { useParams } from 'react-router-dom';
-import { LinkOffTwoTone } from '@mui/icons-material';
 
 export default function AppNavbar2(): JSX.Element {
   const shopName = useParams();

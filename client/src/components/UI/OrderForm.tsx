@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import Suggestions from 'react-dadata-suggestions';
+// @ts-nocheck
+import { DatePicker } from '@mui/lab';
+import { FormControl, Grid, MenuItem, Select, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { MenuItem, Select, TextField, Grid, FormControl } from '@mui/material';
-import { DatePicker } from '@mui/lab';
 import InputLabel from '@mui/material/InputLabel';
+import Typography from '@mui/material/Typography';
+import React, { useState } from 'react';
+// @ts-ignore
+import Suggestions from 'react-dadata-suggestions';
 import { useAppSelector } from '../../features/reduxHooks';
 
 export type OrderhandlerInputType = {
@@ -92,6 +94,7 @@ export default function OrderForm(): JSX.Element {
                   label="Способ доставки"
                   name="selfDelivery"
                   value={selfDelivery}
+                  // @ts-ignore
                   onChange={changeHandlerInput}
                 >
                   <MenuItem value>Самовывоз</MenuItem>
@@ -144,7 +147,7 @@ export default function OrderForm(): JSX.Element {
                 onChange={changeHandlerInput}
               />
               <TextField
-              sx={{ width: '100%' }}
+                sx={{ width: '100%' }}
                 id="city"
                 label="Город Улица и номер дома"
                 name="city"

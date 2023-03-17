@@ -21,6 +21,11 @@ type ResManyDeleteType = {
   data: IdType[];
 };
 
+
+  const onFinish: (values: any) => void = (values) => {
+    console.log('Selected buttons:', values.buttons);
+  };
+
 const deleteManyProducts: (
   ids: [number]
 ) => Promise<ResManyDeleteType> = async (ids) => {

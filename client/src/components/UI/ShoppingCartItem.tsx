@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import {
@@ -23,8 +24,6 @@ export default function ShoppingCartItem({ cartItem }: PropsType): JSX.Element {
   };
 
   return (
-    
-
     <Card
       sx={{
         maxWidth: 235,

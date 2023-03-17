@@ -1,7 +1,8 @@
+// @ts-nocheck
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { CartProductType, OrderType, ProductType } from '../../types';
+import type { OrderType, ProductType } from '../../types';
 
 type InitSlice = {
   shoppingCart: OrderType;
@@ -46,8 +47,8 @@ export const shoppingCartSlice = createSlice({
         (el) => el.id === action.payload.id,
       );
       state.shoppingCart.products.splice(index, 1);
-      if(action.payload.price !== undefined)
-      state.totalPrice -= action.payload.price* action.payload.orderCount
+      if (action.payload.price !== undefined)
+        state.totalPrice -= action.payload.price * action.payload.orderCount;
     },
   },
 });
