@@ -37,6 +37,7 @@ function App(): JSX.Element {
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         <Route path="/registration" element={<SignUpUserForm />} />
+        <Route path="/shop/:urlName/contacts" element={<ContactsPage/>} />
 
         <Route
           path="/shop/:urlName/description"

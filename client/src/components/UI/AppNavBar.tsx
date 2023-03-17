@@ -132,7 +132,7 @@ export default function AppNavbar(): JSX.Element {
                   >
                     О КОМПАНИИ
                   </Link>
-                  <Link href={`/${shop.shop.name}/contacts`} sx={styles.listItem}>
+                  <Link href={`/shop/${shop.shop.name}/contacts`} sx={styles.listItem}>
                     КОНТАКТЫ
                   </Link>
                 </List>

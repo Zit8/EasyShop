@@ -41,7 +41,7 @@ const productsSlice = createSlice({
     productCountIncrement(state, action: PayloadAction<ProductType['id']>) {
       return {
         ...state,
-        products: state.products.map((product) => {
+        filterProducts: state.filterProducts.map((product) => {
           if (product.id === action.payload)
             return {
               ...product,
@@ -56,7 +56,7 @@ const productsSlice = createSlice({
     productCountDecrement(state, action: PayloadAction<ProductType['id']>) {
       return {
         ...state,
-        products: state.products.map((product) => {
+        filterProducts: state.filterProducts.map((product) => {
           if (product.id === action.payload)
             return {
               ...product,

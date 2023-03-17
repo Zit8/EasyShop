@@ -28,8 +28,6 @@ export default function DescriptionPage(): JSX.Element {
   useEffect(() => {
     dispatch(getShopThunk(shopName.urlName)).catch(() => {});
   }, []);
-  const data = shop.shop.ratingLink;
-  console.log(data)
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
