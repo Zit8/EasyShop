@@ -1,8 +1,15 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { User, Shop } = require("../db/models");
+const upload = require("../middleware/upload");
 
 const authRouter = express.Router();
+
+const normalizeUrlName = (name) =>
+  name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-zA-Z0-9]+/g, "");
 
 authRouter.post("/signup", async (req, res) => {
   console.log(req.body);
@@ -26,43 +33,45 @@ authRouter.post("/signup", async (req, res) => {
   }
 });
 
-authRouter.route("/createshop").post(async (req, res) => {
-  const {
-    name,
-    description,
-    logo,
-    city,
-    address,
-    phone,
-    email,
-    startTime,
-    finishingTime,
-    weekdays,
-    userId,
-    ratingLink,
-  } = req.body;
-  if (!userId && !name && !phone && !city) res.sendStatus(401);
-  try {
-    const newShop = await Shop.create({
-      name,
-      description,
-      logo,
-      city,
-      address,
-      phone,
-      email,
-      startTime,
-      finishingTime,
-      weekdays,
-      userId: req.session.user.id,
-      ratingLink,
-    });
-    return res.json(newShop);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-});
+authRouter
+  .route("/createshop")
+  .post(upload.single("logo"), async (req, res) => {
+    try {
+      const {
+        name,
+        description,
+        logo,
+        city,
+        address,
+        phone,
+        email,
+        startTime,
+        finishingTime,
+        weekdays,
+        userId,
+        ratingLink,
+      } = req.body;
+      const newShop = await Shop.create({
+        name,
+        description,
+        logo,
+        city,
+        address,
+        phone,
+        email,
+        startTime,
+        finishingTime,
+        weekdays,
+        userId,
+        ratingLink,
+        urlName: normalizeUrlName(name),
+      });
+      res.json(newShop);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  });
 
 authRouter.post("/signin", async (req, res) => {
   const { email, passwordHash } = req.body;
