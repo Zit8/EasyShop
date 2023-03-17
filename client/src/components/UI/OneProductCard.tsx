@@ -69,7 +69,7 @@ export default function OneProductCard({
           container
           spacing={3}
           justifyContent="space-between"
-          alignItems="center"
+          alignItems="center"/>
         <Grid item xs={12}>
           <Typography
             align="center"

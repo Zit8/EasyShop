@@ -41,10 +41,12 @@ export const shoppingCartSlice = createSlice({
       state.totalPrice += (action.payload.price * action.payload.orderCount);
     },
     removeItem: (state, action: PayloadAction<ProductType['id']>) => {
+      const index = state.shoppingCart.products.findIndex((el) => el.id === action.payload)
       state.shoppingCart.products.splice(
-        state.shoppingCart.products.findIndex((el) => el.id === action.payload),
+        index,
         1,
       );
+      state.totalPrice -=  state.shoppingCart.products[index].price;
     },
   },
 });
