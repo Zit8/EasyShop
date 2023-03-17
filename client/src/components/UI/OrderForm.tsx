@@ -128,25 +128,9 @@ export default function OrderForm(): JSX.Element {
                 Адрес доставки
               </Typography>
               <TextField
-                sx={{ width: '100%', marginBottom: 3 }}
-                label="Улица и номер дома"
-                id="street"
-                name="street"
-                value={street}
-                onChange={changeHandlerInput}
-              />
-              <TextField
-                sx={{ width: '100%' }}
-                label="Город"
-                id="city"
-                name="city"
-                value={city}
-                onChange={changeHandlerInput}
-              />
-              <TextField
               sx={{ width: '100%' }}
                 id="city"
-                label="Город Улица и номер дома"
+               
                 name="city"
                 value={city}
                 type="text"
