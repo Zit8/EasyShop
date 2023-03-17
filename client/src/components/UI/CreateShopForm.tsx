@@ -374,6 +374,7 @@ export default function CreateShopForm(): JSX.Element {
             ЗАГРУЗИТЕ ССЫЛКУ НА ВИДЖЕТ
           </Typography.Title>
           <Input
+          
             name="ratingLink"
             placeholder="Введите ссылку на виджет"
             style={{
