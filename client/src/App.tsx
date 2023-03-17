@@ -18,6 +18,8 @@ import ContactsPage from './components/Pages/ContactsPage';
 import SignInAdminForm from './components/UI/SignInAdminForm';
 import SignUpUserForm from './components/UI/SignUpUserForm';
 import AppNavbar2 from './components/UI/AppNavBar2';
+import SignUpAdminForm from './components/UI/SignUpAdminForm';
+import SignUpAdminForm1 from './components/UI/SignUpAdminForm1';
 import CreateShopForm from './components/UI/CreateShopForm';
 import MainPage from './components/Pages/MainPage';
 // import SignUpAdminForm from './components/UI/SignUpAdminForm';
@@ -36,18 +38,18 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
-        <Route path="/authadmin/:type" element={<AuthAdminPage />} />
+        {/* <Route path="/authadmin/:type" element={<AuthAdminPage />} /> */}
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
-        <Route path="/registration" element={<SignUpUserForm />} />
+        {/* <Route path="/user/signup" element={<SignUpAdminForm1 />} /> */}
+        <Route path="/shop/:urlName/contacts" element={<ContactsPage/>} />
+        {/* <Route path="/registration" element={<SignUpUserForm />} /> */}
         <Route path="/shop/:urlName/contacts" element={<ContactsPage />} />
         <Route path="/auth/createshop" element={<CreateShopForm />} />
         <Route
           path="/shop/:urlName/description"
-          element={<DescriptionPage />}
-        />
+          element={<DescriptionPage />}/>
         <Route path="/shop/:urlName" element={<ShopPage />} />
-        {/* <Route path="/registration" element={<SignUpAdminForm />} /> */}
       </Routes>
     </Container>
   );

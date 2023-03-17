@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import Row from 'react-bootstrap/Row';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import { useAppDispatch, useAppSelector } from '../../features/reduxHooks';
 import { getShoppingCartThunk } from '../../features/Slices/shoppingCartSlice';
 import ShoppingCartItem from '../UI/ShoppingCartItem';
-import  Button  from 'react-bootstrap/Button';
 
 export default function ShoppingCertPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const totalPrice = useAppSelector((state) => state.shoppingCart.totalPrice)
+  const totalPrice = useAppSelector((state) => state.shoppingCart.totalPrice);
   const productsInCart = useAppSelector(
     (state) => state.shoppingCart.shoppingCart.products,
   );
@@ -20,18 +20,35 @@ export default function ShoppingCertPage(): JSX.Element {
   }, []);
 
   return (
-    <Container>
-      
-      <Row className="d-flex justify-content-center md-5">
+    <>
+      <ListGroup style={{marginTop:'200px'}}>
         {productsInCart.map((cartItem) => (
-          <ShoppingCartItem key={cartItem.id} cartItem={cartItem} />
+          <ShoppingCartItem cartItem={cartItem} />
         ))}
-      </Row>
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-        <h3>Итого: {totalPrice} руб</h3></div>
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <Button style={{width:'30%'}} href='/orderform'>Оформить заказ</Button>
+      </ListGroup>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <h3>Итого: {totalPrice} руб</h3>
       </div>
-    </Container>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Button
+          style={{ backgroundColor: 'black', color: 'white', width: '30%' }}
+          href="/orderform"
+        >
+          Оформить заказ
+        </Button>
+      </div>
+    </>
   );
 }
