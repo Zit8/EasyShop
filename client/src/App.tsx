@@ -18,6 +18,8 @@ import MainePage from './components/Pages/MainePage';
 import SignInAdminForm from './components/UI/SignInAdminForm';
 import SignUpUserForm from './components/UI/SignUpUserForm';
 import AppNavbar2 from './components/UI/AppNavBar2';
+import SignUpAdminForm from './components/UI/SignUpAdminForm';
+import SignUpAdminForm1 from './components/UI/SignUpAdminForm1';
 // import SignUpAdminForm from './components/UI/SignUpAdminForm';
 // import AdminPanel from './admin/Admin';
 
@@ -37,15 +39,12 @@ function App(): JSX.Element {
         <Route path="/authadmin/:type" element={<AuthAdminPage />} />
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
-        <Route path="/registration" element={<SignUpUserForm />} />
+        <Route path="/user/signup" element={<SignUpAdminForm1 />} />
         <Route path="/shop/:urlName/contacts" element={<ContactsPage/>} />
-
         <Route
           path="/shop/:urlName/description"
-          element={<DescriptionPage />}
-        />
+          element={<DescriptionPage />}/>
         <Route path="/shop/:urlName" element={<ShopPage />} />
-        {/* <Route path="/registration" element={<SignUpAdminForm />} /> */}
       </Routes>
     </Container>
   );
