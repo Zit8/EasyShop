@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, VoidFunctionComponent } from 'react';
 import {
   Card,
   Form,
@@ -10,8 +10,22 @@ import {
   TimePicker,
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '../../features/reduxHooks';
+import { createShopActionThunk } from '../../features/Slices/createShopSlice';
+import type { ShopType } from '../../types';
 
 export default function CreateShopForm(): JSX.Element {
+  const dispath = useAppDispatch();
+  
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+    console.log('<=======');
+    const data = Object.fromEntries(
+      new FormData(e.currentTarget),
+    ) as unknown as ShopType;
+    dispath(createShopActionThunk(data)).catch((err) => null);
+    window.location = 'http://localhost:3002';
+  };
+
   const { Search } = Input;
   const options = [
     { label: 'ПН', value: 'пн' },
@@ -62,7 +76,7 @@ export default function CreateShopForm(): JSX.Element {
         }}
       >
         <Form
-          //   onSubmit={submitHandler}
+          onFinish={submitHandler}
           style={{
             alignItems: 'center',
             justifyContent: 'center',
