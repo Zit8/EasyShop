@@ -26,7 +26,7 @@ productRouter
       res.json({ data: newProduct });
     } catch (error) {
       console.log(error);
-      res.sendStatus(500);
+      res.sendStatus(501);
     }
   });
 
@@ -39,7 +39,7 @@ productRouter
       res.json({ data: await Product.updateMany(ids, data) });
     } catch (error) {
       console.log(error);
-      res.sendStatus(500);
+      res.sendStatus(502);
     }
   })
   .post(async (req, res) => {
@@ -62,7 +62,7 @@ productRouter
       res.json({ data: product });
     } catch (error) {
       console.log(error);
-      res.sendStatus(500);
+      res.sendStatus(503);
     }
   })
   .delete(async (req, res) => {
@@ -72,7 +72,7 @@ productRouter
       res.json({ data: req.body });
     } catch (error) {
       console.log(error);
-      res.sendStatus(500);
+      res.sendStatus(504);
     }
   })
   .patch(upload.single("image"), async (req, res) => {
@@ -86,7 +86,7 @@ productRouter
       res.json({ data: product });
     } catch (error) {
       console.log(error);
-      res.sendStatus(500);
+      res.sendStatus(505);
     }
   });
 

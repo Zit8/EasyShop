@@ -9,7 +9,7 @@ const apiProductRouter = require("./routes/adminPanelRoutes/apiProducts");
 const apiCategoriesRouter = require("./routes/adminPanelRoutes/apiCategories");
 const userRouter = require("./routes/adminPanelRoutes/apiUsers");
 const apiOrderRouter = require("./routes/adminPanelRoutes/apiOrders");
-const apiSubCategoryRouter = require("./routes/adminPanelRoutes/apiSubCategory")
+const apiSubCategoryRouter = require("./routes/adminPanelRoutes/apiSubCategory");
 
 require("dotenv").config();
 

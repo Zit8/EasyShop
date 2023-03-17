@@ -83,7 +83,7 @@ const styles = {
 
 export default function AppNavbar(): JSX.Element {
   const shopName = useParams();
-  
+
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = (): void => {
     setOpen(true);
@@ -100,8 +100,8 @@ export default function AppNavbar(): JSX.Element {
   // const logoutHandler = (): void => {
   //   dispatch(logouUserActionThunk()).catch(() => null);
   // };
-  const isAuthenticated = useAppSelector((state) => state.userData.user)
-  
+  const isAuthenticated = useAppSelector((state) => state.userData.user);
+
   return (
     <AppBar position="static" style={styles.appBar}>
       <Container maxWidth={false} style={{ paddingLeft: 0, paddingRight: 0 }}>
@@ -132,7 +132,10 @@ export default function AppNavbar(): JSX.Element {
                   >
                     О КОМПАНИИ
                   </Link>
-                  <Link href={`/${shop.shop.name}/contacts`} sx={styles.listItem}>
+                  <Link
+                    href={`/${shop.shop.name}/contacts`}
+                    sx={styles.listItem}
+                  >
                     КОНТАКТЫ
                   </Link>
                 </List>
@@ -140,34 +143,43 @@ export default function AppNavbar(): JSX.Element {
             </Grid>
             <Grid item>
               <Box style={styles.logo}>
-              {shop.shop.logo ? (
-              <Link href={`/shop/${shop.shop.urlName}`}>
-              <Typography variant="h6" color="inherit">
-                  <img
-                    src={shop.shop.logo}
-                    alt="Logo"
-                    style={styles.logoImg}
-                  />
-                </Typography>
-                </Link>):(<Link href={`/shop/${shop.shop.urlName}`} ><Typography variant="h6" color="inherit">
-                  <img
-                    src='https://icons8.ru/icon/85078/магазин'
-                    alt="Logo"
-                    style={styles.logoImg}
-                  />
-                </Typography></Link>)}
+                {shop.shop.logo ? (
+                  <Link href={`/shop/${shop.shop.urlName}`}>
+                    <Typography variant="h6" color="inherit">
+                      <img
+                        src={shop.shop.logo}
+                        alt="Logo"
+                        style={styles.logoImg}
+                      />
+                    </Typography>
+                  </Link>
+                ) : (
+                  <Link href={`/shop/${shop.shop.urlName}`}>
+                    <Typography variant="h6" color="inherit">
+                      <img
+                        src="https://icons8.ru/icon/85078/магазин"
+                        alt="Logo"
+                        style={styles.logoImg}
+                      />
+                    </Typography>
+                  </Link>
+                )}
                 <Link href={`/shop/${shop.shop.urlName}`}>
-                <Typography style={styles.shopName} variant="h4">
-                  {shop.shop.name}
-                </Typography>
+                  <Typography style={styles.shopName} variant="h4">
+                    {shop.shop.name}
+                  </Typography>
                 </Link>
               </Box>
             </Grid>
             <Grid item>
               <Box style={{ display: 'flex' }}>
-                {isAuthenticated ? (<Link href="/auth/logout" style={styles.link}>
-                  LOGOUT
-                </Link>):('')}
+                {isAuthenticated ? (
+                  <Link href="/auth/logout" style={styles.link}>
+                    LOGOUT
+                  </Link>
+                ) : (
+                  ''
+                )}
                 <Link href="/bascet">
                   <ShoppingCartIcon sx={{ color: 'black', fontSize: 30 }} />
                 </Link>

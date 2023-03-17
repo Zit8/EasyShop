@@ -17,8 +17,10 @@ import ContactsPage from './components/Pages/ContactsPage';
 import MainePage from './components/Pages/MainePage';
 import SignInAdminForm from './components/UI/SignInAdminForm';
 import SignUpUserForm from './components/UI/SignUpUserForm';
-//import SignUpAdminForm from './components/UI/SignUpAdminForm';
-//import AdminPanel from './admin/Admin';
+import AppNavbar2 from './components/UI/AppNavBar2';
+import CreateShopForm from './components/UI/CreateShopForm';
+// import SignUpAdminForm from './components/UI/SignUpAdminForm';
+// import AdminPanel from './admin/Admin';
 
 function App(): JSX.Element {
   const status = useAppSelector((state) => state.userData.status);
@@ -26,10 +28,10 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUserActionThunk()).catch(() => null);
   }, []);
-  
+
   return (
     <Container>
-      <AppNavBar />
+      <AppNavbar2 />
       <Routes>
         <Route path="/" element={<MainePage />} />
         <Route path="/auth/:type" element={<AuthPage />} />
@@ -37,6 +39,8 @@ function App(): JSX.Element {
         <Route path="/orderform" element={<OrderForm />} />
         <Route path="/bascet" element={<ShopingCartPage />} />
         <Route path="/registration" element={<SignUpUserForm />} />
+        <Route path="/shop/:urlName/contacts" element={<ContactsPage />} />
+        <Route path="/auth/createshop" element={<CreateShopForm />} />
 
         <Route
           path="/shop/:urlName/description"
