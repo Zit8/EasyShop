@@ -48,7 +48,7 @@ export default function DescriptionPage(): JSX.Element {
           }}
           component="img"
           image={shop.shop.logo}
-          alt="херня"
+          alt="logo"
           style={{ maxHeight: '35px', maxWidth: '50%' }}
         />
 

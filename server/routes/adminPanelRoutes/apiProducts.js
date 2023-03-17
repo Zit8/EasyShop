@@ -20,10 +20,10 @@ productRouter
   })
   .post(upload.single("image"), async (req, res) => {
     // create
-    console.log(req.body);
+    console.log(req.body.data, "<<<<<<<<<<<<<<<<<");
     try {
-      const newProduct = await Product.create({ ...req.body });
-      res.json(newProduct);
+      const newProduct = await Product.create(req.body.data);
+      res.json({ data: newProduct });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);

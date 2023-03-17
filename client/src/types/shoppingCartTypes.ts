@@ -1,10 +1,7 @@
-export type CartProductType = {
-  id: number;
-  count: number;
-};
+import type { ProductType } from './productTypes';
 
 export type OrderType = {
-  products: CartProductType[];
+  products: ProductType[];
   userId: number;
   deliveryAddress: string;
   selfDelivery: boolean;

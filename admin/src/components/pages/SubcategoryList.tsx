@@ -2,6 +2,7 @@ import React from "react";
 import {
   Datagrid,
   DateField,
+  EditButton,
   List,
   ReferenceField,
   TextField,
@@ -17,6 +18,7 @@ function SubcategoryList(): JSX.Element {
         <ReferenceField source="userId" reference="users" />
         <DateField source="createdAt" />
         <DateField source="updatedAt" />
+        <EditButton />
       </Datagrid>
     </List>
   );

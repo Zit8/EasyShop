@@ -12,4 +12,5 @@ export type ShopType = {
   weekdays: string;
   userId?: number | undefined;
   ratingLink?: string;
+  urlName: string;
 };

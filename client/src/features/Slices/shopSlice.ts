@@ -22,6 +22,7 @@ const initialState: InitSlice = {
     weekdays: '',
     userId: 0,
     ratingLink: '',
+    urlName: '',
   },
 };
 
