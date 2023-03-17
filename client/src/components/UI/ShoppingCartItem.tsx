@@ -19,7 +19,7 @@ type PropsType = {
 export default function ShoppingCartItem({ cartItem }: PropsType): JSX.Element {
   const dispatch = useAppDispatch();
   const deleteBascet = (id: number): void => {
-    dispatch(removeItem(id));
+    dispatch(removeItem(cartItem));
   };
 
   return (

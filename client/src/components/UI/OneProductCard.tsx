@@ -40,22 +40,23 @@ export default function OneProductCard({
     dispatch(productCountDecrement(product.id));
   };
   const handleOrder = (): void => {
-    dispatch(addItem(product));
+    dispatch(addItem(product)); // naiti norm product po product.id
   };
   return (
     <Card
-      sx={{
-        maxWidth: 235,
-        height: 'auto',
-        margin: 2,
-        backgroundColor: '#FAFAFA',
-        boxShadow: '0px 0px 4px 1px rgba(0,0,0,0.5)',
-        borderRadius: '8px',
-        transition: 'box-shadow 0.3s ease-in-out',
-        '&:hover': {
-          boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.5)',
-        },
-      }}
+    sx={{
+      maxWidth: 235,
+      height: 'auto',
+      margin: 2,
+      backgroundColor: '#FAFAFA',
+      boxShadow: '0px 0px 4px 1px rgba(0,0,0,0.5)',
+      borderRadius: '8px',
+      transition: 'box-shadow 0.3s ease-in-out',
+      '&:hover': {
+        boxShadow: '0px 0px 8px 2px rgba(0,0,0,0.5)',
+      },
+      position: 'relative', // added
+    }}
     >
       <CardMedia
         sx={{

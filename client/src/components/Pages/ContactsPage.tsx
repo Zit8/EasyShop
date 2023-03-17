@@ -14,7 +14,9 @@ export default function ContactsPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const shop = useAppSelector((state) => state.shop);
+  console.log(shop.shop, '++++++++++');
   const shopName = useParams();
+  console.log(shopName, '<======>');
   const styles = {
     p: {
       fontWeight: 'bolder',
@@ -23,8 +25,9 @@ export default function ContactsPage(): JSX.Element {
   };
 
   useEffect(() => {
-    dispatch(getShopThunk(shopName.name)).catch(() => {});
+    dispatch(getShopThunk(shopName.urlName)).catch(() => {});
   }, []);
+
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
