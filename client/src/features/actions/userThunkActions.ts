@@ -1,17 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { UserFromBackand, UserLoginForm, UserSubmitForm } from '../../types';
+import type {
+  UserFromBackand,
+  UserLoginForm,
+  UserSubmitForm,
+} from '../../types';
 
-
-export const checkUserActionThunk = createAsyncThunk<UserFromBackand>(
-  'user/check',
-  async () =>
-    axios<UserFromBackand>('/api/auth/check')
-      .then((res) => res.data)
-      .catch(() => {
-        throw new Error('err');
-      }),
-);
+// export const checkUserActionThunk = createAsyncThunk<UserFromBackand>(
+//   'user/check',
+//   async () =>
+//     axios<UserFromBackand>('/api/auth/check')
+//       .then((res) => res.data)
+//       .catch(() => {
+//         throw new Error('err');
+//       }),
+// );
 
 export const signUpUserActionThunk = createAsyncThunk<
   UserFromBackand,

@@ -10,6 +10,8 @@ export default function SignInForm2(): JSX.Element {
     email: '',
     passwordHash: '',
   });
+  console.log(formInput);
+  
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setFormInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
@@ -48,10 +50,10 @@ export default function SignInForm2(): JSX.Element {
       >
         <Form
           onFinish={(e) => {
-            e.preventDefault();
+            // e.preventDefault();
             dispatch(signInUserActionThunk(formInput)).catch((error) =>
-              console.log(error),
-            );
+              console.log(error));
+              window.location = 'http://localhost:3002'
           }}
         >
           <Typography.Title

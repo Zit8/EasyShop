@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavBar from './components/UI/AppNavBar';
 import AuthPage from './components/Pages/AuthPage';
 import { useAppDispatch, useAppSelector } from './features/reduxHooks';
-import { checkUserActionThunk } from './features/actions';
+// import { checkUserActionThunk } from './features/actions';
 import ShopPage from './components/Pages/ShopPage';
 import MainPage from './MainPage';
 import OrderForm from './components/UI/OrderForm';
@@ -23,11 +23,11 @@ import CreateShopForm from './components/UI/CreateShopForm';
 // import AdminPanel from './admin/Admin';
 
 function App(): JSX.Element {
-  const status = useAppSelector((state) => state.userData.status);
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(checkUserActionThunk()).catch(() => null);
-  }, []);
+  // const status = useAppSelector((state) => state.userData.status);
+  // const dispatch = useAppDispatch();
+  // useEffect(() => {
+  //   dispatch(checkUserActionThunk()).catch(() => null);
+  // }, []);
 
   return (
     <Container>
